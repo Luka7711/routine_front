@@ -10,9 +10,9 @@ class Nav extends Component{
 		return(
 			<ul>
 				<li>Logo</li>
-				<Link to><li>Home</li></Link>
-				<Link to><li>Log in</li></Link>
-				<Link to><li>Sign Up</li></Link>
+				<Link to="/"><li>Home</li></Link>
+				<Link to="/login"><li>Log in</li></Link>
+				<Link to="/signup"><li>Sign Up</li></Link>
 			</ul>
 		)
 	}

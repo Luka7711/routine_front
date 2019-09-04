@@ -2,20 +2,20 @@ import React from 'react';
 
 
 const Login = () => {
-	render(){
 		return(
 			<div>
 				<div>
 					<form>
 						<h3>Sign in</h3>
+						<label>username:</label>
 						<input placeholder="username"/>
+						<label>password:</label>
 						<input placeholder="password"/>
-						<input type="sumbit"/>
+						<button>sign in</button>
 					</form>
 				</div>
 			</div>
 		)
-	}
 }
 
 export default Login

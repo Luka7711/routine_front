@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Nav from './Navigation';
 import Login from './Login';
+import Signup from './Signup';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 
 class App extends Component {
@@ -17,8 +18,8 @@ class App extends Component {
          <div className="App">
             <Nav/>
             <Switch>
-              <Route to='/login' component={Login}/>
-              <Route to='/signup' component={Signup}/>
+              <Route path='/login' component={Login}/>
+              <Route path='/signup' component={Signup}/>
             </Switch>
          </div>
       </Router>
