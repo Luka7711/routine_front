@@ -5,19 +5,19 @@ class Nav extends Component{
 	constructor(){
 		super();
 		this.state = {
-			loggedIn: true
+			loggedIn: false,
 		}
 	}
 
 	render(){
-		const validation = [<Link to="/login"><li>Log in</li></Link>,
-		<Link to="/signup"><li>Sign Up</li></Link>]
+		const validation = [<Link to="/login" key="1"><li>Log in</li></Link>,
+		<Link to="/signup" key="2"><li>Sign Up</li></Link>]
 		
 		return(
 			<ul>
 				<li>Logo</li>
 				<Link to="/"><li>Home</li></Link>
-				{this.state.loggedIn === false ? validation.map(item => item) : null}
+				{this.state.loggedIn === false? validation.map((item, i) => item) : null}
 			</ul>
 		)
 	}
