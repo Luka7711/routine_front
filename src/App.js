@@ -5,7 +5,7 @@ import Login from './Login';
 import Signup from './Signup';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 import Home from './Home';
-
+import DiaryForm from './DiaryForm'
 
 class App extends Component {
   constructor(){
@@ -20,9 +20,10 @@ class App extends Component {
          <div className="App">
             <Nav/>
             <Switch>
-              <Route path="/" component={Home}/>
+              <Route path="/" exact component={Home}/>
               <Route path='/login' component={Login}/>
               <Route path='/signup' component={Signup}/>
+              <Route path='/write-diary' component={DiaryForm}/>
             </Switch>
          </div>
       </Router>

@@ -9,7 +9,7 @@ const Diary = () =>{
 				<p>______________</p>
 				<p>______________</p>
 				<p>______________</p>
-				<Link>Write</Link>
+				<Link to="/write-diary">Write</Link>
 			</div>
 		</div>
 	)
