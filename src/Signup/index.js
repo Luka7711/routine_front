@@ -1,17 +1,32 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const Signup = () =>{
+class Signup extends Component {
+	constructor(){
+		super();
+		this.state = {
+			username:'',
+			password:'',
+			zodiac:''
+		}
+	}
+
+handleChange = (e) =>{
+	this.setState({
+		[e.currentTarget.name]: e.currentTarget.value
+	})
+}
+	render(){
 		return(
 			<div>
 				<div>
-					<form>
+					<form onSubmit={this.handleSubmit}>
 						<h3>Sign up</h3>
 						<label>username:</label>
-						<input placholder="username"/>
+						<input placholder="username" name="username" onChange={this.handleChange}/>
 						<label>password:</label>
-						<input placeholder="password"/>
+						<input placeholder="password" name="password" onChange={this.handleChange}/>
 						<label>zodiac:</label>
-						<select>
+						<select onChange={this.handleChange}>
 							<option value="aries">aries</option>
 							<option value="taurus">taurus</option>
 							<option value="gemini">gemini</option>
@@ -30,6 +45,7 @@ const Signup = () =>{
 				</div>
 			</div>
 		)
+	}
 }
 
 export default Signup

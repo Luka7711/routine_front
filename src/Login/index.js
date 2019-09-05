@@ -22,13 +22,28 @@ handleSubmit = async(event) => {
 	event.preventDefault();
 	try{
 		const response = await fetch('http://localhost:9000/auth/login', {
-			method:POST,
+			method:'POST',
 			credentials:'include',
 			body:JSON.stringify(this.state),
-			header:{
-				'Content-Type': 'application-json'
+			headers:{
+				'Content-Type': 'application/json'
 			}
-		})
+		});
+
+		const parsedResponse = await response.json();
+		console.log(parsedResponse)
+
+		if(parsedResponse.status === 200){
+			this.setState({
+				message: "Thank you! Welcome"
+			})
+			console.log(this.state.message)
+		}else{
+			this.setState({
+				message: "Username or password is incorrect"
+			})
+			console.log(this.state.message)
+		}
 
 	}catch(err){
 		this.setState({
