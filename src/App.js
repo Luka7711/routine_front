@@ -11,19 +11,27 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-
+      username:''
     }
   }
+
+  handleUsername = (user) => {
+    this.setState({
+      username:user
+    })
+  }
+
   render(){
+    console.log(this.state.username)
     return (
       <Router>
          <div className="App">
             <Nav/>
             <Switch>
               <Route path="/" exact component={Home}/>
-              <Route path='/login' component={Login}/>
+              <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername}/>}/>
               <Route path='/signup' component={Signup}/>
-              <Route path='/write-diary' component={DiaryForm}/>
+              <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username}/>}/>
             </Switch>
          </div>
       </Router>

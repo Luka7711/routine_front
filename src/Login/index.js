@@ -34,6 +34,8 @@ handleSubmit = async(event) => {
 		console.log(parsedResponse)
 
 		if(parsedResponse.status === 200){
+			
+			this.props.handleUsername(this.state.username)
 			this.setState({
 				message: "Thank you! Welcome"
 			})
