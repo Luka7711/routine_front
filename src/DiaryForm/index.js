@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Redirect } from 'react-router-dom'
 
 class DiaryForm extends Component{
 	constructor(props){
@@ -8,7 +9,8 @@ class DiaryForm extends Component{
 			title:'',
 			about:'',
 			username:props.name,
-			redirect:false
+			redirect:false,
+			diaryStories:[]
 		}
 	}
 
@@ -33,14 +35,16 @@ class DiaryForm extends Component{
 			const parsedResponse = await response.json();
 			
 			if(parsedResponse.status === 200){
-				//send request to back-end 
-				response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
-					method:'GET',
-					credentials:'include'
+				let userStories = [];
+				await parsedResponse.data.diaryStory.map(data => userStories.push(data))
+				this.setState({
+					diaryStories:[userStories]
 				})
-				//get all diary stories of current user
-				//redirect to '/mystories' route
-				//display all diary stories 
+				this.props.handleDiary(this.state.diaryStories);
+				
+				this.setState({
+					redirect:true
+				})
 			}
 		}catch(err){
 			console.log(err, "this is err")
@@ -48,7 +52,9 @@ class DiaryForm extends Component{
 	}
 
 	render(){
-		console.log(this.state)
+		if(this.state.redirect === true){
+			return <Redirect to='/profile'/>
+		}
 		return(
 			<div>
 				<div>
