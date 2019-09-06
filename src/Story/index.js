@@ -1,12 +1,18 @@
 import React from 'react'
 
 const Story = (props) => {
-	console.log(props.item)
+	let stories = props.story.map((item, i) =>{
+		return(
+			<div key={i}>
+				<ul>
+					<li key={i}>{item.title}</li>
+				</ul>
+			</div>
+		)
+	});
 	return(
 		<div>
-			<ul>
-				<li>{props.item.about}</li>
-			</ul>
+			{stories}
 		</div>
 	)
 }
