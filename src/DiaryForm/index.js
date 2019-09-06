@@ -6,7 +6,8 @@ class DiaryForm extends Component{
 		this.state = {
 			date:'',
 			title:'',
-			about:''
+			about:'',
+			username:props.name
 		}
 	}
 
@@ -20,8 +21,7 @@ class DiaryForm extends Component{
 	handleSubmit = async(e) => {
 		e.preventDefault();
 		try{
-
-			const response = await fetch('http://localhost:9000/routine/diary', {
+			const response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
 				method:'POST',
 				credentials:'include',
 				body: JSON.stringify(this.state),
@@ -37,11 +37,12 @@ class DiaryForm extends Component{
 	}
 
 	render(){
+		console.log(this.state)
 		return(
 			<div>
 				<div>
 					<p>Horoscope:</p>
-					<form onSubmit={this.handleSumbit}>
+					<form onSubmit={this.handleSubmit}>
 						<label> Date:
 							<input type="date" name="date" onChange={this.handleChange}/>
 						</label>

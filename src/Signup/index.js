@@ -34,6 +34,8 @@ handleSubmit = async(e) => {
 		const parsedResponse = await response.json();
 
 		if(parsedResponse.status === 200){
+
+			this.props.handleUsername(this.state.username);
 			this.setState({
 				message:'Thank you for registerring'
 			})
