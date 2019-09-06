@@ -7,7 +7,8 @@ class DiaryForm extends Component{
 			date:'',
 			title:'',
 			about:'',
-			username:props.name
+			username:props.name,
+			redirect:false
 		}
 	}
 
@@ -21,7 +22,7 @@ class DiaryForm extends Component{
 	handleSubmit = async(e) => {
 		e.preventDefault();
 		try{
-			const response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
+			let response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
 				method:'POST',
 				credentials:'include',
 				body: JSON.stringify(this.state),
@@ -30,7 +31,17 @@ class DiaryForm extends Component{
 				}
 			})
 			const parsedResponse = await response.json();
-			console.log(parsedResponse.message)
+			
+			if(parsedResponse.status === 200){
+				//send request to back-end 
+				response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
+					method:'GET',
+					credentials:'include'
+				})
+				//get all diary stories of current user
+				//redirect to '/mystories' route
+				//display all diary stories 
+			}
 		}catch(err){
 			console.log(err, "this is err")
 		}
