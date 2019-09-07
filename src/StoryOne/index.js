@@ -5,7 +5,7 @@ class StoryOne extends Component{
 	constructor(){
 		super();
 		this.state = {
-
+			message:''
 		}
 	}
 
@@ -15,15 +15,28 @@ class StoryOne extends Component{
 
 	showStory = async(number) => {
 		try{
-			const response = await('http://localhost:9000/diary/' + number, {
-
+			const response = await fetch('http://localhost:9000/routine/diary/' + number, {
+				method:'GET',
+				credentials:'include'
 			})
+			const parsedResponse = await response.json();
+			if(parsedResponse.status === 200){
+				this.setState({
+					diaryStory:parsedResponse.data,
+					message: parsedResponse.message
+				})
+				console.log(this.state)
+			}else{
+				this.setState({
+					message:parsedResponse.message
+				})
+			}
+
 		}catch(err){
 			console.log('something went wrong');
 			console.log(err)
 		}
 	}
-
 
 	render(){
 		console.log(this.props.match.params.number)
