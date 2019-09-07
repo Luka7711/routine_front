@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Story = (props) => {
-	let stories = props.story.map((item, i) =>{
+	let stories = props.story.map((item, i) => {
 		return(
 			<div key={i}>
 				<ul>
-					<li key={i}>{item.title}</li>
+					<Link to={`/diary-story/${item._id}`}><li>{item.date}</li>
+					<li>{item.title}</li>
+					<li>{item.about}</li></Link>
 				</ul>
 			</div>
 		)
