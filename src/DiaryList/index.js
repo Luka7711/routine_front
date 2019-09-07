@@ -12,7 +12,7 @@ class DiaryList  extends Component {
 	render(){
 		const allStories = this.state.stories.map((item, i) => {
 			return (
-				<Story key={i} story={item}/>
+				<Story key={i} story={item} storyId={this.props.storyId}/>
 			)
 		}) 
 		return(

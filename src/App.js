@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from './Home';
 import DiaryForm from './DiaryForm';
 import DiaryList from './DiaryList';
+import StoryOne from './StoryOne'
 
 class App extends Component {
   constructor(){
@@ -41,6 +42,7 @@ class App extends Component {
               <Route path='/signup' render={(props) =><Signup {...props} handleUsername={this.handleUsername}/>} />
               <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username} handleDiary={this.handleDiary}/>} />
               <Route path='/profile' render={(props) => <DiaryList {...props} diaryStories={this.state.diaryStories}/>}/>
+              <Route path='/diary-story/:number' component={StoryOne}/>
             </Switch>
          </div>
       </Router>
