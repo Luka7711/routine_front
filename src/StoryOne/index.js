@@ -9,7 +9,20 @@ class StoryOne extends Component{
 		}
 	}
 
-	
+	componentDidMount(){
+		this.showStory(this.props.match.params.number)
+	}
+
+	showStory = async(number) => {
+		try{
+			const response = await('http://localhost:9000/diary/' + number, {
+
+			})
+		}catch(err){
+			console.log('something went wrong');
+			console.log(err)
+		}
+	}
 
 
 	render(){
