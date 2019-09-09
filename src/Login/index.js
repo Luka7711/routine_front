@@ -7,7 +7,8 @@ class Login extends Component {
 		this.state = {
 			username:'',
 			password:'',
-			message:''
+			message:'',
+
 		}
 	}
 
@@ -35,7 +36,8 @@ handleSubmit = async(event) => {
 
 		if(parsedResponse.status === 200){
 			
-			this.props.handleUsername(this.state.username)
+			this.props.handleUsername(this.state.username);
+			this.props.handleLoggedIn();
 			this.setState({
 				message: "Thank you! Welcome"
 			})

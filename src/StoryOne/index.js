@@ -39,11 +39,20 @@ class StoryOne extends Component{
 	}
 
 	render(){
-		console.log(this.props.match.params.number)
+		let storyContent
+		if(this.state.diaryStory){
+			 storyContent= 
+				<ul> 
+					<label>Date: <li>{this.state.diaryStory.date}</li></label>
+					<label>Title: <li>{this.state.diaryStory.title}</li></label>
+					<label>About: <li>{this.state.diaryStory.about}</li> </label>
+				</ul>
+		}
 		return(
 			<div>
-				<h1>Hello</h1>
-				<h1>{this.props.match.params.number}</h1>
+				<ul>
+					{storyContent}
+				</ul>
 			</div>
 		)
 	}
