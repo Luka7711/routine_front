@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
 	constructor(){
@@ -8,7 +8,7 @@ class Login extends Component {
 			username:'',
 			password:'',
 			message:'',
-
+			redirect:false
 		}
 	}
 
@@ -39,7 +39,8 @@ handleSubmit = async(event) => {
 			this.props.handleUsername(this.state.username);
 			this.props.handleLoggedIn();
 			this.setState({
-				message: "Thank you! Welcome"
+				message: "Thank you! Welcome",
+				redirect: true
 			})
 			console.log(this.state.message)
 		}else{
@@ -57,6 +58,9 @@ handleSubmit = async(event) => {
 }
 
 	render(){
+		if(this.state.redirect) {
+			return <Redirect to="/"/>
+		}
 		return(
 			<div>
 				<div>

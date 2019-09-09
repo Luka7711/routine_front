@@ -7,7 +7,8 @@ class Signup extends Component {
 			username:'',
 			password:'',
 			zodiac:'',
-			message:''
+			message:'',
+			redirect:false
 		}
 	}
 
@@ -36,6 +37,7 @@ handleSubmit = async(e) => {
 		if(parsedResponse.status === 200){
 
 			this.props.handleUsername(this.state.username);
+			this.props.handleLoggedIn();
 			this.setState({
 				message:'Thank you for registerring'
 			})

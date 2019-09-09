@@ -52,7 +52,7 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
-              <Route path='/signup' render={(props) =><Signup {...props} handleUsername={this.handleUsername}/>} />
+              <Route path='/signup' render={(props) =><Signup {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
               <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username} handleDiary={this.handleDiary}/>} />
               <Route path='/profile' render={(props) => <DiaryList {...props} diaryStories={this.state.diaryStories}/>}/>
               <Route path='/diary-story/:number' component={StoryOne}/>
