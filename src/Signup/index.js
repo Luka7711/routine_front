@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 
 class Signup extends Component {
 	constructor(){
@@ -39,7 +40,8 @@ handleSubmit = async(e) => {
 			this.props.handleUsername(this.state.username);
 			this.props.handleLoggedIn();
 			this.setState({
-				message:'Thank you for registerring'
+				message:'Thank you for registerring',
+				redirect:true
 			})
 			console.log(this.state.message)
 		}else{
@@ -57,6 +59,9 @@ handleSubmit = async(e) => {
 }
 
 	render(){
+		if(this.state.redirect){
+			return <Redirect to="/"/>
+		}
 		return(
 			<div>
 				<div>

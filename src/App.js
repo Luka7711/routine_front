@@ -38,6 +38,12 @@ class App extends Component {
     })
   }
 
+  handleLogout = () => {
+    this.setState({
+      loggedIn:false
+    })
+  }
+
   render(){
     console.log(this.state);
     return (
@@ -46,7 +52,7 @@ class App extends Component {
            <nav>
              <ul>
                <Link to="/"><li>Home</li></Link>
-               {this.state.loggedIn ? <Logout/> : <Authorization/>}
+               {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
              </ul>
            </nav>
             <Switch>
