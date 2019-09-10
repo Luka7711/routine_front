@@ -5,7 +5,28 @@ class DiaryList  extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			stories:props.diaryStories
+			username: props.username
+		}
+	}
+
+	//take username in state
+	//make fetch call to get list of diaries
+
+	componentDidMount(){
+		this.handleDiaries();
+	}
+
+	handleDiaries = async() => {
+		try{
+			const response = await('http://localhost:9000/routine/diary', {
+				method:'GET',
+				credentials:'include'
+			})
+
+			const parsedResponse = await response.json();
+
+		}catch(err){
+
 		}
 	}
 
