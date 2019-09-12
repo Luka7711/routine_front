@@ -22,15 +22,11 @@ class DiaryList  extends Component {
 			})
 
 			const parsedResponse = await response.json();
-			console.log('alksnfksdngkjnfdgkjndfkgjn');
-			console.log(parsedResponse)
 			if(parsedResponse.status === 200){
 				this.setState({
 					stories: parsedResponse.data.diaryStory,
 					message:parsedResponse.message
 				});
-				console.log('parsed Response')
-				console.log(parsedResponse)
 			}else{
 				this.setState({
 					message:parsedResponse.message
@@ -44,7 +40,6 @@ class DiaryList  extends Component {
 	}
 
 	render(){
-		console.log(this.state)
 		if(this.state.stories){
 			var allStories = this.state.stories.map((item, i) => {
 				return (

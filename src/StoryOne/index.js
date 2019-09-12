@@ -15,11 +15,13 @@ class StoryOne extends Component{
 
 	showStory = async(number) => {
 		try{
-			const response = await fetch('http://localhost:9000/routine/diary/' + number, {
+			const response = await fetch('http://localhost:9000/routine/mydiary/' + number, {
 				method:'GET',
 				credentials:'include'
 			})
 			const parsedResponse = await response.json();
+			console.log('parsed response')
+			console.log(parsedResponse)
 			if(parsedResponse.status === 200){
 				this.setState({
 					diaryStory:parsedResponse.data,
@@ -39,7 +41,7 @@ class StoryOne extends Component{
 	}
 
 	render(){
-		let storyContent
+		let storyContent;
 		if(this.state.diaryStory){
 			 storyContent= 
 				<ul> 

@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 class Logout extends Component {
 	constructor(){
 		super();
 		this.state = {
-			message:''
+			message:'',
+			redirect: false
 		}
 	}
 
 	handleLogout = async() => {
-		
 		try{
 			const response = await fetch('http://localhost:9000/auth/logout', {
 				method:'GET',
@@ -19,7 +19,8 @@ class Logout extends Component {
 			const parsedResponse = await response.json();
 			if(parsedResponse.status === 200){
 				this.setState({
-					message:parsedResponse.message
+					message:parsedResponse.message,
+					redirect:true
 				})
 				this.props.handleLogout();
 				console.log(this.state.message)
@@ -32,8 +33,10 @@ class Logout extends Component {
 			console.log(err)
 		}
 	}
-
 	render(){
+		if(this.state.redirect === true){
+			return <Redirect to='/'/>
+		}
 		return(
 			<ul>
 				<Link to="/profile"><li>Profile</li></Link>

@@ -3,12 +3,13 @@ import './App.css';
 import Authorization from './Authorization';
 import Login from './Login';
 import Signup from './Signup';
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom' 
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'; 
 import Home from './Home';
 import DiaryForm from './DiaryForm';
 import DiaryList from './DiaryList';
 import StoryOne from './StoryOne';
 import Logout from './Logout';
+import DiaryEditForm from './DiaryEditForm';
 
 class App extends Component {
   constructor(){
@@ -62,6 +63,7 @@ class App extends Component {
               <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username} handleDiary={this.handleDiary}/>} />
               <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username}/>}/>
               <Route path='/diary-story/:number' component={StoryOne}/>
+              <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
             </Switch>
          </div>
       </Router>

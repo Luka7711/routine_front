@@ -32,8 +32,6 @@ handleSubmit = async(event) => {
 		});
 
 		const parsedResponse = await response.json();
-		console.log(parsedResponse)
-
 		if(parsedResponse.status === 200){
 			
 			this.props.handleUsername(this.state.username);
@@ -42,12 +40,10 @@ handleSubmit = async(event) => {
 				message: "Thank you! Welcome",
 				redirect: true
 			})
-			console.log(this.state.message)
 		}else{
 			this.setState({
 				message: "Username or password is incorrect"
 			})
-			console.log(this.state.message)
 		}
 
 	}catch(err){
