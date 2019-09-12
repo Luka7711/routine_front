@@ -5,12 +5,10 @@ class DiaryList  extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			username: props.username
+			username: props.username,
+			message:''
 		}
 	}
-
-	//take username in state
-	//make fetch call to get list of diaries
 
 	componentDidMount(){
 		this.handleDiaries();
@@ -18,28 +16,46 @@ class DiaryList  extends Component {
 
 	handleDiaries = async() => {
 		try{
-			const response = await('http://localhost:9000/routine/diary', {
+			const response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
 				method:'GET',
 				credentials:'include'
 			})
 
 			const parsedResponse = await response.json();
-
+			console.log('alksnfksdngkjnfdgkjndfkgjn');
+			console.log(parsedResponse)
+			if(parsedResponse.status === 200){
+				this.setState({
+					stories: parsedResponse.data.diaryStory,
+					message:parsedResponse.message
+				});
+				console.log('parsed Response')
+				console.log(parsedResponse)
+			}else{
+				this.setState({
+					message:parsedResponse.message
+				})
+			}
 		}catch(err){
-
+			this.setState({
+				message:'Whole request are shit'
+			})
 		}
 	}
 
 	render(){
-		const allStories = this.state.stories.map((item, i) => {
-			return (
-				<Story key={i} story={item} storyId={this.props.storyId}/>
-			)
-		}) 
+		console.log(this.state)
+		if(this.state.stories){
+			var allStories = this.state.stories.map((item, i) => {
+				return (
+					<Story key={i} story={item} storyId={this.props.storyId}/>
+				)
+			}) 
+		}
 		return(
 			<div>
 				<h1>Diary Stories</h1>
-				{allStories? allStories :'loading'}
+				{this.state.stories? allStories :'loading'}
 			</div>	
 		)
 	}

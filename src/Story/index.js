@@ -3,29 +3,14 @@ import {Link} from 'react-router-dom';
 
 
 class Story extends Component  {
-	constructor(){
-		super();
-		this.state = {
-
-		}
-	}
-	
 	render(){
-		let stories = this.props.story.map((item, i) => {
-			return(
-				<div key={i}>
-					<ul>
-						<Link to={`/diary-story/${item._id}`}><li>{item.date}</li>
-						<li>{item.title}</li>
-						<li>{item.about}</li></Link>
-					</ul>
-				</div>
-			)
-		});
-
 		return(
 			<div>
-				{stories}
+				<ul>
+					<Link to={`/diary-story/${this.props.story._id}`}><li>{this.props.story.date}</li>
+					<li>{this.props.story.title}</li>
+					<li>{this.props.story.about}</li></Link>
+				</ul>
 			</div>
 		)
 	}
