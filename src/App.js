@@ -17,7 +17,8 @@ class App extends Component {
     this.state = {
       username:'',
       diaryStories:[],
-      loggedIn: false
+      loggedIn: false,
+      say:true
     }
   }
 
