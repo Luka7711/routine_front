@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 class Story extends Component  {
 
 	handleEdit = async() => {
-
+		
 	}
 	render(){
 		return(

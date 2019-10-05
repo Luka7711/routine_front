@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 
 class DiaryEditForm extends Component{
 	constructor(){
 		super();
 		this.state = {
 			showForm:false,
-			message:''
+			message:'',
+			redirect:false
 		}
 	}
 
@@ -15,7 +17,7 @@ class DiaryEditForm extends Component{
 
 	getDiaryValues = async() => {
 		try{
-			const response = await fetch(`http://localhost:9000/routine/mydiary/${this.props.match.params.number}`, {
+			const response = await fetch(`http://localhost:9000/routine/my-diary/${this.props.match.params.number}`, {
 				method: 'GET',
 				credentials: 'include'
 			});
@@ -47,7 +49,38 @@ class DiaryEditForm extends Component{
 		})
 	}
 
+	handleSubmit = async(e) => {
+		e.preventDefault();
+		try{
+			const response = await fetch('http://localhost:9000/routine/my-diary/edit/'+this.props.match.params.number, {
+				method:'PUT',
+				credentials:'include',
+				body:JSON.stringify(this.state),
+				headers:{
+					'Content-Type':'application/json'
+				}
+			});
+			const parsedResponse = await response.json();
+			if(parsedResponse.status === 200){
+				this.setState({
+					showForm:false,
+					redirect:true,
+					message: parsedResponse.message
+				})
+			}else{
+				this.setState({
+					message:parsedResponse.message
+				})
+			}
+		}catch(err){
+			console.log(err);
+		}
+	}
+
 	render(){
+		if(this.state.redirect === true){
+			return <Redirect to={`/diary-story/${this.props.match.params.number}`}/>
+		};
 		let editForm;
 		if(this.state.showForm){
 			return (

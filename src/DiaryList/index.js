@@ -23,11 +23,13 @@ class DiaryList  extends Component {
 
 			const parsedResponse = await response.json();
 			if(parsedResponse.status === 200){
+				console.log('successful request')
 				this.setState({
 					stories: parsedResponse.data.diaryStory,
 					message:parsedResponse.message
 				});
 			}else{
+				console.log('something went wrong')
 				this.setState({
 					message:parsedResponse.message
 				})
