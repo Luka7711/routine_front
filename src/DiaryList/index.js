@@ -41,11 +41,15 @@ class DiaryList  extends Component {
 		}
 	}
 
+	handleRemove = () => {
+		console.log('Handled from Diary List')
+	}
+
 	render(){
 		if(this.state.stories){
 			var allStories = this.state.stories.map((item, i) => {
 				return (
-					<Story key={i} story={item} storyId={this.props.storyId}/>
+					<Story key={i} story={item} storyId={this.props.storyId} handleDiaries={this.handleDiaries}/>
 				)
 			}) 
 		}

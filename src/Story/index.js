@@ -3,9 +3,33 @@ import {Link} from 'react-router-dom';
 
 
 class Story extends Component  {
+	constructor(){
+		super();
+		this.state = {
+			message:''
+		}
+	}
 
-	handleEdit = async() => {
-		
+	handleDelete = async(e) => {
+		try{
+			const response = await fetch('http://localhost:9000/routine/my-diary/delete/' + this.props.story._id, {
+				method:'DELETE',
+				credentials:'include'
+			});
+			const parsedResponse = await response.json();
+			if(parsedResponse.status === 200){
+				this.setState({
+					message:parsedResponse.message
+				});
+				this.props.handleDiaries()
+			}else{
+				this.setState({
+					message:parsedResponse.message
+				})
+			}
+		}catch(err){
+			console.log(err)
+		}
 	}
 	render(){
 		return(
