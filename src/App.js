@@ -17,8 +17,14 @@ class App extends Component {
     this.state = {
       username:'',
       diaryStories:[],
-      loggedIn: false
+      loggedIn: false,
+      quote:''
     }
+  }
+
+  componentDidMount(){
+    this.handleQuotes();
+    setInterval(() => this.handleQuotes(), 60000);
   }
 
   handleUsername = (user) => {
@@ -45,6 +51,29 @@ class App extends Component {
     })
   }
 
+  handleQuotes = async() => {
+    try{
+        const response = await fetch('http://localhost:9000/routine/quotes', {
+            method:'GET',
+            credentials:'include'
+        });
+        const parsedResponse = await response.json();
+        
+        if(parsedResponse.status === 200){
+          this.setState({
+            quote:parsedResponse.data
+          })
+        }else{
+          this.setState({
+            quote:'nothin'
+          })
+        }
+    }catch(err){
+      console.log(err);
+      console.log('Something went wrong, data is not mined')
+    }
+  }
+
   render(){
     console.log(this.state);
     return (
@@ -56,6 +85,10 @@ class App extends Component {
                {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
              </ul>
            </nav>
+           <div className="quotes">
+             <p>{this.state.quote? this.state.quote.message : null}</p>
+             <p>- {this.state.quote.author}</p>
+           </div>
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />

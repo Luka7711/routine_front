@@ -22,6 +22,7 @@ class DiaryList  extends Component {
 			})
 
 			const parsedResponse = await response.json();
+			console.log(parsedResponse);
 			if(parsedResponse.status === 200){
 				console.log('successful request')
 				this.setState({
@@ -39,10 +40,6 @@ class DiaryList  extends Component {
 				message:'Whole request are shit'
 			})
 		}
-	}
-
-	handleRemove = () => {
-		console.log('Handled from Diary List')
 	}
 
 	render(){
