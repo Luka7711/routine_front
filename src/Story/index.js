@@ -12,7 +12,7 @@ class Story extends Component  {
 
 	handleDelete = async(e) => {
 		try{
-			const response = await fetch('http://localhost:9000/routine/my-diary/delete/' + this.props.story._id, {
+			const response = await fetch(`http://localhost:9000/routine/my-diary/delete/${this.props.story._id}/${this.props.username}`, {
 				method:'DELETE',
 				credentials:'include'
 			});

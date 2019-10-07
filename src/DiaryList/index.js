@@ -46,7 +46,7 @@ class DiaryList  extends Component {
 		if(this.state.stories){
 			var allStories = this.state.stories.map((item, i) => {
 				return (
-					<Story key={i} story={item} storyId={this.props.storyId} handleDiaries={this.handleDiaries}/>
+					<Story key={i} story={item} storyId={this.props.storyId} handleDiaries={this.handleDiaries} username={this.state.username}/>
 				)
 			}) 
 		}

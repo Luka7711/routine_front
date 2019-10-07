@@ -10,6 +10,7 @@ import DiaryList from './DiaryList';
 import StoryOne from './StoryOne';
 import Logout from './Logout';
 import DiaryEditForm from './DiaryEditForm';
+import SearchResult from './SearchResult';
 
 class App extends Component {
   constructor(){
@@ -18,7 +19,8 @@ class App extends Component {
       username:'',
       diaryStories:[],
       loggedIn: false,
-      quote:''
+      quote:'',
+      showResult:false
     }
   }
 
@@ -74,17 +76,45 @@ class App extends Component {
     }
   }
 
+  handleChange = async(e) =>{
+    try{
+      const response = await fetch('http://localhost:9000/auth/users', {
+        method:'GET',
+        credentials:'include'
+      });
+      const parsedResponse = await response.json();
+      let allUsers = [];
+      this.setState({
+        showResult:true
+      })
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  handleRemoveForm = () => {
+    this.setState({
+      showResult:false
+    })
+  }
+
   render(){
     console.log(this.state);
     return (
       <Router>
-         <div className="App">  
+         <div className="App" onClick={this.handleRemoveForm}>  
            <nav>
              <ul>
                <Link to="/"><li>Home</li></Link>
                {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
+               <li><input type="text" placeholder="search" onChange={this.handleChange}/></li>
              </ul>
            </nav>
+           {this.state.showResult ?
+              <SearchResult users={this.state.users}/>
+              :
+              null
+           }
            <div className="quotes">
              <p>{this.state.quote? this.state.quote.message : null}</p>
              <p>- {this.state.quote.author}</p>
