@@ -11,6 +11,7 @@ import StoryOne from './StoryOne';
 import Logout from './Logout';
 import DiaryEditForm from './DiaryEditForm';
 import SearchResult from './SearchResult';
+import SearchProfile from './SearchProfile';
 
 class App extends Component {
   constructor(){
@@ -114,8 +115,6 @@ class App extends Component {
           showResult:true
         })
       }
-     //if true: send found user to SearchResult Component
-     //else: browse empty string in SearchResult Component
     }catch(err){
       console.log('something went wrong') 
     }
@@ -156,6 +155,7 @@ class App extends Component {
               <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username}/>}/>
               <Route path='/diary-story/:number' component={StoryOne}/>
               <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
+              <Route path='/search-for' render={(props) => <SearchProfile {...props} foundUser={this.state.foundUser}/> } />
             </Switch>
          </div>
       </Router>
