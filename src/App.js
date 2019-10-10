@@ -20,7 +20,9 @@ class App extends Component {
       diaryStories:[],
       loggedIn: false,
       quote:'',
-      showResult:false
+      showResult:false,
+      searchValue:'',
+      foundUser:''
     }
   }
 
@@ -77,18 +79,45 @@ class App extends Component {
   }
 
   handleChange = async(e) =>{
+    e.persist();
     try{
-      const response = await fetch('http://localhost:9000/auth/users', {
+      let response = await fetch('http://localhost:9000/auth/users', {
         method:'GET',
         credentials:'include'
       });
-      const parsedResponse = await response.json();
-      let allUsers = [];
+      let parsedResponse = await response.json();
       this.setState({
-        showResult:true
-      })
+        allUsers:parsedResponse.users,
+        searchValue: e.target.value
+      });
+     //check if items in array === searchValue
+      let regex = new RegExp("^" + this.state.searchValue + "$", "i");
+      let users = this.state.allUsers;
+      let result; 
+      await (function(){
+        for(let i=0; i<users.length; i++){
+          result = users[i].match(regex);
+            if(result !== null){
+              return result[0]
+            }
+        }
+      }())
+
+      if(result !== null){
+        this.setState({
+          foundUser: result[0],
+          showResult:true
+        })
+      }else{
+        this.setState({
+          foundUser:'',
+          showResult:true
+        })
+      }
+     //if true: send found user to SearchResult Component
+     //else: browse empty string in SearchResult Component
     }catch(err){
-      console.log(err)
+      console.log('something went wrong') 
     }
   }
 
@@ -111,7 +140,7 @@ class App extends Component {
              </ul>
            </nav>
            {this.state.showResult ?
-              <SearchResult users={this.state.users}/>
+              <SearchResult foundUser={this.state.foundUser}/>
               :
               null
            }
