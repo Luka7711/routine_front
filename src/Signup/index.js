@@ -7,31 +7,40 @@ class Signup extends Component {
 		this.state = {
 			username:'',
 			password:'',
-			zodiac:'',
+			avatar:'',
 			message:'',
 			redirect:false
 		}
 	}
 
-handleChange = (e) =>{
-	this.setState({
-		[e.currentTarget.name]: e.currentTarget.value
-	})
-}
+
+	handleChange = (e) => {
+		console.log(e.target.name)
+		switch(e.target.name){
+			case 'avatar':
+			this.setState({avatar:e.target.files[0]});
+			break;
+		default:
+			this.setState({[e.target.name]:e.target.value})
+		}
+	}
 
 handleSubmit = async(e) => {
 	e.preventDefault();
-	console.log(this.state)
-	
 	try{
+		const formData = await new FormData();
+		formData.append('username', this.state.username);
+		formData.append('password', this.state.password);
+		formData.append('avatar', this.state.avatar);
 		const response = await fetch('http://localhost:9000/auth/register', {
 			method:'POST',
 			credentials:'include',
-			body:JSON.stringify(this.state),
-			headers:{
-				'Content-Type':'application/json'
-			}
-		})
+			body:formData
+			// body:JSON.stringify(this.state),
+			// headers:{
+			// 	'Content-Type':'application/json'
+			// }
+		});
 
 		const parsedResponse = await response.json();
 
@@ -59,33 +68,20 @@ handleSubmit = async(e) => {
 }
 
 	render(){
+		console.log(this.state)
 		if(this.state.redirect){
 			return <Redirect to="/"/>
 		}
 		return(
 			<div>
 				<div>
-					<form onSubmit={this.handleSubmit}>
+					<form onSubmit={this.handleSubmit} encType="multipart/form-data">
 						<h3>Sign up</h3>
 						<label>username:</label>
 						<input placholder="username" name="username" onChange={this.handleChange}/>
 						<label>password:</label>
 						<input placeholder="password" name="password" onChange={this.handleChange}/>
-						<label>zodiac:</label>
-						<select onChange={this.handleChange} name="zodiac">
-							<option value="aries">aries</option>
-							<option value="taurus">taurus</option>
-							<option value="gemini">gemini</option>
-							<option value="cancer">cancer</option>
-							<option value="leo">leo</option>
-							<option value="virgo">virgo</option>
-							<option value="libra">libra</option>
-							<option value="scorpio">scorpio</option>
-							<option value="sagitarius">sagitarius</option>
-							<option value="capricorn">capricorn</option>
-							<option value="aquarius">aquarius</option>
-							<option value="pisces">pisces</option>
-						</select>
+						<input type="file" name="avatar" onChange={this.handleChange}/>
 						<button>sign up</button>
 					</form>
 				</div>

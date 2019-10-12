@@ -42,7 +42,9 @@ class SearchProfile extends Component{
 			if(this.state.diaryStories.length >= 1){
 				profile = 
 					[<h4 key="1">{this.props.foundUser}</h4>,
-					<p key="2">{this.state.diaryStories[0].title}</p>]
+					<span key="3">add to friends</span>,
+					<p key="2">{this.state.diaryStories[0].about}</p>,
+					<img src={`http://localhost:9000/auth/user-avatar/${this.state.foundUser}`}/>]
 			}else{
 				profile = <p>no blogs yet</p>
 			}
