@@ -16,6 +16,9 @@ class SearchProfile extends Component{
 		})
 	}
 
+	  //if page on search-for url, do not change content of searchProfile
+	  //else if page not search-for pass all data and show profile component 
+
 	handleUserProfile = async() => {
 		try{	
 			const response = await fetch('http://localhost:9000/auth/users/' + this.props.foundUser, {
@@ -42,9 +45,10 @@ class SearchProfile extends Component{
 			if(this.state.diaryStories.length >= 1){
 				profile = 
 					[<h4 key="1">{this.props.foundUser}</h4>,
+					<img key="2" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
 					<span key="3">add to friends</span>,
-					<p key="2">{this.state.diaryStories[0].about}</p>,
-					<img src={`http://localhost:9000/auth/user-avatar/${this.state.foundUser}`}/>]
+					<p key="4">{this.state.diaryStories[0].about}</p>
+				]
 			}else{
 				profile = <p>no blogs yet</p>
 			}
