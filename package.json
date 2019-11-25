@@ -1,11 +1,11 @@
 {
   "name": "front-end",
   "version": "0.1.0",
-  "engines":{
+  "private": true,
+    "engines":{
     "node":"10.16.3",
     "npm":"6.9.0"
   },
-  "private": true,
   "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
