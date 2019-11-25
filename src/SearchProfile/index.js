@@ -21,7 +21,7 @@ class SearchProfile extends Component{
 
 	handleUserProfile = async() => {
 		try{	
-			const response = await fetch('http://localhost:9000/auth/users/' + this.props.foundUser, {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/auth/users/' + this.props.foundUser, {
 				method:'GET',
 				credentials:'include'
 			});

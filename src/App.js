@@ -73,7 +73,7 @@ class App extends Component {
 
   handleQuotes = async() => {
     try{
-        const response = await fetch('http://localhost:9000/routine/quotes', {
+        const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/routine/quotes', {
             method:'GET',
             credentials:'include'
         });
@@ -97,7 +97,7 @@ class App extends Component {
   handleChange = async(e) =>{
     e.persist();
     try{
-      let response = await fetch('http://localhost:9000/auth/users', {
+      let response = await fetch(process.env.REACT_APP_BACKEND_URL+'/auth/users', {
         method:'GET',
         credentials:'include'
       });

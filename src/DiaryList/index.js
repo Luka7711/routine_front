@@ -16,7 +16,7 @@ class DiaryList  extends Component {
 
 	handleDiaries = async() => {
 		try{
-			const response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/routine/diary/' + this.state.username, {
 				method:'GET',
 				credentials:'include'
 			})

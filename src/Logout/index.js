@@ -12,7 +12,7 @@ class Logout extends Component {
 
 	handleLogout = async() => {
 		try{
-			const response = await fetch('http://localhost:9000/auth/logout', {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/auth/logout', {
 				method:'GET',
 				credentials:'include'
 			});

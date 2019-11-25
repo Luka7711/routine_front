@@ -24,7 +24,7 @@ class DiaryForm extends Component{
 	handleSubmit = async(e) => {
 		e.preventDefault();
 		try{
-			let response = await fetch('http://localhost:9000/routine/diary/' + this.state.username, {
+			let response = await fetch(process.env.REACT_APP_BACKEND_URL+'/routine/diary/' + this.state.username, {
 				method:'POST',
 				credentials:'include',
 				body: JSON.stringify(this.state),

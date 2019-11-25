@@ -32,7 +32,7 @@ handleSubmit = async(e) => {
 		formData.append('username', this.state.username);
 		formData.append('password', this.state.password);
 		formData.append('avatar', this.state.avatar);
-		const response = await fetch('http://localhost:9000/auth/register', {
+		const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/auth/register', {
 			method:'POST',
 			credentials:'include',
 			body:formData

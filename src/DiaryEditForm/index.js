@@ -17,7 +17,7 @@ class DiaryEditForm extends Component{
 
 	getDiaryValues = async() => {
 		try{
-			const response = await fetch(`http://localhost:9000/routine/my-diary/${this.props.match.params.number}`, {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/routine/my-diary/${this.props.match.params.number}`, {
 				method: 'GET',
 				credentials: 'include'
 			});
@@ -52,7 +52,7 @@ class DiaryEditForm extends Component{
 	handleSubmit = async(e) => {
 		e.preventDefault();
 		try{
-			const response = await fetch('http://localhost:9000/routine/my-diary/edit/'+this.props.match.params.number, {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/routine/my-diary/edit/'+this.props.match.params.number, {
 				method:'PUT',
 				credentials:'include',
 				body:JSON.stringify(this.state),

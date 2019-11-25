@@ -15,7 +15,7 @@ class StoryOne extends Component{
 
 	showStory = async(number) => {
 		try{
-			const response = await fetch('http://localhost:9000/routine/my-diary/' + number, {
+			const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/routine/my-diary/' + number, {
 				method:'GET',
 				credentials:'include'
 			})
