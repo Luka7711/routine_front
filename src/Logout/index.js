@@ -40,6 +40,8 @@ class Logout extends Component {
 		return(
 			<ul>
 				<Link to="/profile"><li>Profile</li></Link>
+				<li>Friends</li>
+				<li>Notification</li>
 				<li onClick={this.handleLogout}>Logout</li>
 			</ul>
 		)

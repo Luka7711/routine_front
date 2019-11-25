@@ -12,6 +12,8 @@ import Logout from './Logout';
 import DiaryEditForm from './DiaryEditForm';
 import SearchResult from './SearchResult';
 import SearchProfile from './SearchProfile';
+import MessageContacts from './MessageContacts';
+import Messages from './Messages';
 
 class App extends Component {
   constructor(){
@@ -23,14 +25,15 @@ class App extends Component {
       quote:'',
       showResult:false,
       searchValue:'',
-      foundUser:''
+      foundUser:'',
+      showMessageWindow:false
     }
   }
 
-  componentDidMount(){
-    this.handleQuotes();
-    setInterval(() => this.handleQuotes(), 60000);
-  }
+  // componentDidMount(){
+  //   this.handleQuotes();
+  //   setInterval(() => this.handleQuotes(), 60000);
+  // }
 
   handleUsername = (user) => {
     this.setState({
@@ -53,6 +56,18 @@ class App extends Component {
   handleLogout = () => {
     this.setState({
       loggedIn:false
+    })
+  };
+
+  handleShowMessageWindow = () => { 
+    this.setState({
+      showMessageWindow:true
+    })
+  }
+
+  closeChatWindow = () => {
+    this.setState({
+      showMessageWindow:false
     })
   }
 
@@ -143,10 +158,7 @@ class App extends Component {
               :
               null
            }
-           <div className="quotes">
-             <p>{this.state.quote? this.state.quote.message : null}</p>
-             <p>- {this.state.quote.author}</p>
-           </div>
+          
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
@@ -155,8 +167,13 @@ class App extends Component {
               <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username}/>}/>
               <Route path='/diary-story/:number' component={StoryOne}/>
               <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
-              <Route path='/search-for' render={(props) => <SearchProfile {...props} foundUser={this.state.foundUser}/> } />
+              <Route path='/search-for' render={(props) => <SearchProfile {...props} foundUser={this.state.foundUser} handleShowMessageWindow={this.handleShowMessageWindow}/> } />
             </Switch>
+             {this.state.loggedIn && this.state.showMessageWindow ?
+              <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser}/> :
+              null
+            }
+            {this.state.loggedIn ? [<MessageContacts/>] : null}
          </div>
       </Router>
     );

@@ -36,6 +36,10 @@ class SearchProfile extends Component{
 			console.log('something went wrong')
 		}
 	}
+
+	handleMessage = () => {
+		this.props.handleShowMessageWindow();
+	}
 	
 
 	render(){
@@ -46,15 +50,15 @@ class SearchProfile extends Component{
 				profile = 
 					[<h4 key="1">{this.props.foundUser}</h4>,
 					<img key="2" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
-					<span key="3">add to friends</span>,
-					<p key="4">{this.state.diaryStories[0].about}</p>
+					<p key="3">add to friends</p>,
+					<p key="4" onClick={this.handleMessage}>message + </p>,
+					<p key="5">{this.state.diaryStories[0].about}</p>
 				]
 			}else{
 				profile = <p>no blogs yet</p>
 			}
 
 		}
-		console.log(this.state)
 		return(
 			<div>
 				<h1>Profile Page</h1>
