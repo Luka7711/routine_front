@@ -148,7 +148,7 @@ class App extends Component {
          <div className="App" onClick={this.handleRemoveForm}>  
            <nav>
              <ul>
-               <Link to="/"><li>Home</li></Link>
+               <Link to="/"><li>Home Dome</li></Link>
                {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
                <li><input type="text" placeholder="search" onChange={this.handleChange}/></li>
              </ul>
