@@ -38,7 +38,9 @@ class SearchProfile extends Component{
 	}
 
 	handleMessage = () => {
-		this.props.handleShowMessageWindow();
+		console.log("from handle message")
+		console.log(this.state)
+		this.props.handleShowMessageWindow(this.state.foundUser);
 	}
 	
 

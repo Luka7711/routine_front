@@ -14,6 +14,8 @@ import SearchResult from './SearchResult';
 import SearchProfile from './SearchProfile';
 import MessageContacts from './MessageContacts';
 import Messages from './Messages';
+import openSocket from 'socket.io-client';
+export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
 
 class App extends Component {
   constructor(){
@@ -59,14 +61,36 @@ class App extends Component {
     })
   };
 
-  handleShowMessageWindow = () => { 
-    this.setState({
-      showMessageWindow:true
-    })
+  handleShowMessageWindow = async(a) => { 
+    //1. make post request to server
+    //2. pull up all messages from server
+    try{
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
+        '/message/' + this.state.username + '/' + this.state.foundUser, {
+         
+          method:"POST",
+          credentials:"include",
+          body: JSON.stringify(),
+          headers:{
+          'Content-Type': 'application/json'
+          }
+       });
+      
+      const parsedResponse = await response.json();
+      console.log(parsedResponse)
+       this.setState({
+          conversationId: parsedResponse.conversationData,
+          showMessageWindow:true
+       })
+    }catch(err){
+      console.log("something went wrong")
+    }
+   
   }
 
   closeChatWindow = () => {
     this.setState({
+      conversationId:'',
       showMessageWindow:false
     })
   }
@@ -141,6 +165,15 @@ class App extends Component {
     })
   }
 
+  componentDidMount(){
+    this.sendSocket()
+  }
+
+  sendSocket(){
+      socket.emit("messages", "HEllO people");
+      console.log("message just sent");
+  }
+
   render(){
     console.log(this.state);
     return (
@@ -148,7 +181,7 @@ class App extends Component {
          <div className="App" onClick={this.handleRemoveForm}>  
            <nav>
              <ul>
-               <Link to="/"><li>Home Dome</li></Link>
+               <Link to="/"><li>Home</li></Link>
                {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
                <li><input type="text" placeholder="search" onChange={this.handleChange}/></li>
              </ul>
@@ -170,7 +203,7 @@ class App extends Component {
               <Route path='/search-for' render={(props) => <SearchProfile {...props} foundUser={this.state.foundUser} handleShowMessageWindow={this.handleShowMessageWindow}/> } />
             </Switch>
              {this.state.loggedIn && this.state.showMessageWindow ?
-              <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser}/> :
+              <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId}/> :
               null
             }
             {this.state.loggedIn ? [<MessageContacts/>] : null}

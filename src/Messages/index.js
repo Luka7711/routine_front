@@ -6,7 +6,8 @@ class Messages extends Component{
 		super();
 		this.state = {
 			receivers:[],
-			message:''
+			message:'',
+			typing:false
 		}
 	}
 	
