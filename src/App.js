@@ -17,6 +17,7 @@ import Messages from './Messages';
 import openSocket from 'socket.io-client';
 export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
 
+
 class App extends Component {
   constructor(){
     super();
@@ -203,7 +204,7 @@ class App extends Component {
               <Route path='/search-for' render={(props) => <SearchProfile {...props} foundUser={this.state.foundUser} handleShowMessageWindow={this.handleShowMessageWindow}/> } />
             </Switch>
              {this.state.loggedIn && this.state.showMessageWindow ?
-              <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId}/> :
+              <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> :
               null
             }
             {this.state.loggedIn ? [<MessageContacts/>] : null}
