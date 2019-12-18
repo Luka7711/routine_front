@@ -72,6 +72,14 @@ class Messages extends Component{
 		socket.emit('messages', this.state.messages);
 		console.log('sending messages from client')
 	}
+
+	componentWillUmount(){
+		this.setState({
+			messages:'',
+			text:'',
+			conversationId:''
+		})
+	}
 	render(){
 		console.log(this.state)
 		return(

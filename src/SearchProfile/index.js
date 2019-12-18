@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 
 class SearchProfile extends Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
-			showProfile:false
+			showProfile:false,
+			foundUser:props.foundUser
 		}
 	}
 
@@ -31,6 +32,10 @@ class SearchProfile extends Component{
 					diaryStories: parsedResponse.stories.diaryStory,
 					showProfile:true
 				})
+			}else if(parsedResponse.status == 404){
+				this.setState({
+					showProfile:false
+				})
 			}
 		}catch(err){
 			console.log('something went wrong')
@@ -51,7 +56,7 @@ class SearchProfile extends Component{
 			if(this.state.diaryStories.length >= 1){
 				profile = 
 					[<h4 key="1">{this.props.foundUser}</h4>,
-					<img key="2" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
+					<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
 					<p key="3">add to friends</p>,
 					<p key="4" onClick={this.handleMessage}>message + </p>,
 					<p key="5">{this.state.diaryStories[0].about}</p>

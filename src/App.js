@@ -31,6 +31,7 @@ class App extends Component {
       foundUser:'',
       showMessageWindow:false
     }
+
   }
 
   // componentDidMount(){
@@ -58,16 +59,22 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({
-      loggedIn:false
-    })
+      loggedIn:false,
+      foundUser:'',
+      showMessageWindow:false,
+      diaryStories:[]
+    });
   };
 
-  handleShowMessageWindow = async(a) => { 
+  handleShowMessageWindow = async(foundUser) => { 
     //1. make post request to server
     //2. pull up all messages from server
+    console.log('its aaaa')
+    console.log(foundUser);
+    console.log(this.state.username)
     try{
       const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
-        '/message/' + this.state.username + '/' + this.state.foundUser, {
+        '/message/' + this.state.username + '/' + foundUser, {
          
           method:"POST",
           credentials:"include",
@@ -152,7 +159,7 @@ class App extends Component {
       }else{
         this.setState({
           foundUser:'',
-          showResult:true
+          showResult:false
         })
       }
     }catch(err){
