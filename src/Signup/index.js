@@ -64,22 +64,55 @@ handleSubmit = async(e) => {
 }
 
 	render(){
+			// <div>
+			// 	<div>
+			// 		<form onSubmit={this.handleSubmit} encType="multipart/form-data">
+			// 			<h3>Sign up</h3>
+			// 			<label>username:</label>
+			// 			<input placholder="username" name="username" onChange={this.handleChange}/>
+			// 			<label>password:</label>
+			// 			<input placeholder="password" name="password" onChange={this.handleChange}/>
+			// 			<input type="file" name="avatar" onChange={this.handleChange}/>
+			// 			<button>sign up</button>
+			// 		</form>
+			// 	</div>
+			// </div>
 		console.log(this.state)
 		if(this.state.redirect){
 			return <Redirect to="/"/>
 		}
 		return(
-			<div>
-				<div>
-					<form onSubmit={this.handleSubmit} encType="multipart/form-data">
-						<h3>Sign up</h3>
-						<label>username:</label>
-						<input placholder="username" name="username" onChange={this.handleChange}/>
-						<label>password:</label>
-						<input placeholder="password" name="password" onChange={this.handleChange}/>
-						<input type="file" name="avatar" onChange={this.handleChange}/>
-						<button>sign up</button>
-					</form>
+			<div className="col-md-12 d-flex justify-content-center flex-column">
+				<div className="row" >
+					<div className="col-lg-6 col-md-8 mx-auto">
+						<div class="card rounded shadow shadow-sm">
+							<div className="card-header text-center">
+								<h3>Sign up</h3>
+							</div>
+							<div className="card-body d-flex justify-content-center">
+								<form className="form" onSubmit={this.handleSubmit}>
+									<div className="form-group">
+										<label>username: </label>
+										<input className="form-control w-100" placholder="username" name="username" onChange={this.handleChange}/>
+									
+									</div>
+									<div className="form-group">	
+										<label>password:</label>
+										<input className="form-control w-100" placeholder="password" name="password" onChange={this.handleChange}/>
+										
+									</div>
+
+									<div className="form-group">	
+										<label>profile picture: </label>
+										<div>
+											<input type="file" name="avatar" onChange={this.handleChange}/>
+										</div>
+									</div>
+									<button className="btn btn-dark">sign up</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		)
@@ -87,3 +120,4 @@ handleSubmit = async(e) => {
 }
 
 export default Signup
+

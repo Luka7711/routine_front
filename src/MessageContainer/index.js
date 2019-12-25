@@ -7,10 +7,20 @@ class MessageContainer extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			messages: props.message
+			messages: props.message,
+			count: 0
 		}
 
-	}render(){
+	
+		setInterval(function(){
+			console.log(props.allMessages())},
+		1000)
+	}
+
+
+	
+
+	render(){
 		console.log("message container")
 		console.log(this.state);
 		const conversation = this.state.messages.map((item, i) => {

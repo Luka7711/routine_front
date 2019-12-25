@@ -5,9 +5,9 @@ class SearchResult extends Component{
 	render(){
 		let output;
 		if(this.props.foundUser){
-			output = <Link to="/search-for"><li>{this.props.foundUser}</li></Link>
+			output = <Link to="/search-for"><li className="nav-link">{this.props.foundUser}</li></Link>
 		}else{
-			output = <li>No result</li>
+			output = <li className="nav-link">User not found</li>
 		}
 		return(
 			<div>

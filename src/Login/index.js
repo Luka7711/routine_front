@@ -59,18 +59,30 @@ handleSubmit = async(event) => {
 			return <Redirect to="/"/>
 		}
 		return(
-			<div>
-				<div>
-					<form onSubmit={this.handleSubmit}>
-						<h3>Sign in</h3>
-						<label>username:
-							<input type="text" placeholder="username" name="username" onChange={this.handleChange}/>
-						</label>
-						<label>password:
-							<input type="password" placeholder="password" name="password" onChange={this.handleChange}/>
-						</label>
-						<button>sign in</button>
-					</form>
+			<div className="col-md-12 d-flex justify-content-center flex-column">
+				<div className="row" >
+					<div className="col-lg-6 col-md-8 mx-auto">
+						<div class="card rounded shadow shadow-sm">
+							<div className="card-header text-center">
+								<h3>Sign in</h3>
+							</div>
+							<div className="card-body d-flex justify-content-center">
+								<form className="form" onSubmit={this.handleSubmit}>
+									<div className="form-group">
+										<label>username: </label>
+											<input className="form-control w-100" type="text" placeholder="username" name="username" onChange={this.handleChange} autocomplete="off"/>
+									
+									</div>
+									<div className="form-group">	
+										<label>password:</label>
+											<input className="form-control w-100" type="password" placeholder="password" name="password" onChange={this.handleChange}/>
+										
+									</div>
+									<button className="btn btn-dark">sign in</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		)

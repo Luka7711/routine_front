@@ -11,9 +11,9 @@ class MessageContacts extends Component{
 			<div className="messageContacts">
 				<h2>Contact list</h2>
 				<ul>
-					<li>luka</li>
-					<li>jim</li>
-					<li>hana</li>
+					<li key={1}>luka</li>
+					<li key={2}>jim</li>
+					<li key={3}>hana</li>
 				</ul>
 			</div>
 		)

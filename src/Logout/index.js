@@ -38,12 +38,12 @@ class Logout extends Component {
 			return <Redirect to='/'/>
 		}
 		return(
-			<ul>
-				<Link to="/profile"><li>Profile</li></Link>
-				<li>Friends</li>
-				<li>Notification</li>
-				<li onClick={this.handleLogout}>Logout</li>
-			</ul>
+			<>
+				<Link to="/profile"><li className="nav-link">Profile</li></Link>
+				<li className="nav-link">Friends</li>
+				<li className="nav-link">Notification</li>
+				<li className="nav-link" onClick={this.handleLogout}>Logout</li>
+			</>
 		)
 	}
 }

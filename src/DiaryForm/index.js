@@ -56,23 +56,29 @@ class DiaryForm extends Component{
 			return <Redirect to='/profile'/>
 		}
 		return(
-			<div>
-				<div>
-					<p>Horoscope:</p>
-					<form onSubmit={this.handleSubmit}>
-						<label> Date:
-							<input type="date" name="date" onChange={this.handleChange}/>
-						</label>
-						<label>Title:
-							<input type="text" onChange={this.handleChange} name="title"/>
-						</label>
-						<label>
-							About:
-							<textarea type="text" rows="20" cols="100" onChange={this.handleChange} name="about" defaultValue="your thoughts">
+			<div className="col-lg-12">
+				<div className="row">
+					<div className="col-lg-6">
+						<form className="form" onSubmit={this.handleSubmit}>
+							<div className="form-group">
+							<div>
+								<label> Date:
+									<input className="form-control" type="date" name="date" onChange={this.handleChange}/>
+								</label>
+							</div>
+								<label>Title:
+									<input className="form-control" type="text" onChange={this.handleChange} name="title" autocomplete="off"/>
+								</label>
+							</div>
+							
+							<label>
+								About:
+							<textarea className="form-control" type="text" rows="10" cols="100" onChange={this.handleChange} name="about" placeholder="Type here">
 							</textarea>
-						</label>
-						<button>submit</button>
-					</form>
+							</label>
+							<button className="btn btn-dark">submit</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		)

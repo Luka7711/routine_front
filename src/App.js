@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Authorization from './Authorization';
 import Login from './Login';
 import Signup from './Signup';
@@ -158,8 +159,7 @@ class App extends Component {
         })
       }else{
         this.setState({
-          foundUser:'',
-          showResult:false
+          foundUser:''
         })
       }
     }catch(err){
@@ -183,23 +183,26 @@ class App extends Component {
   }
 
   render(){
+    //{this.state.loggedIn ? [<MessageContacts/>] : null}//
     console.log(this.state);
     return (
       <Router>
          <div className="App" onClick={this.handleRemoveForm}>  
-           <nav>
-             <ul>
-               <Link to="/"><li>Home</li></Link>
+           <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="collapse navbar-collapse" id="navbarNav">
+             <ul className="navbar-nav">
+               <Link to="/"><li className="nav-item nav-link">Home</li></Link>
                {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
-               <li><input type="text" placeholder="search" onChange={this.handleChange}/></li>
+               <li className="nav-link"><input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/></li>
              </ul>
+             </div>
            </nav>
            {this.state.showResult ?
               <SearchResult foundUser={this.state.foundUser}/>
               :
               null
            }
-          
+          <div className="container" style={{marginTop:"50px"}}>
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
@@ -213,8 +216,8 @@ class App extends Component {
              {this.state.loggedIn && this.state.showMessageWindow ?
               <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> :
               null
-            }
-            {this.state.loggedIn ? [<MessageContacts/>] : null}
+            }    
+            </div>
          </div>
       </Router>
     );

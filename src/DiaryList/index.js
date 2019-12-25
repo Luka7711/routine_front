@@ -52,7 +52,9 @@ class DiaryList  extends Component {
 		}
 		return(
 			<div>
-				<h1>Diary Stories</h1>
+				<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.state.username}`}/>
+				<h3>{this.state.username}</h3>
+				<h2>Diary Stories</h2>
 				{this.state.stories? allStories :'loading'}
 			</div>	
 		)
