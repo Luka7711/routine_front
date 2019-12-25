@@ -57,8 +57,8 @@ class SearchProfile extends Component{
 				profile = 
 					[<h4 key="1">{this.props.foundUser}</h4>,
 					<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
-					<p key="3">add to friends</p>,
-					<p key="4" onClick={this.handleMessage}>message + </p>,
+					<p key="3">add friend</p>,
+					<p key="4" onClick={this.handleMessage}>send message</p>,
 					<p key="5">{this.state.diaryStories[0].about}</p>
 				]
 			}else{

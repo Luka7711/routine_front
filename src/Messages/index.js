@@ -83,13 +83,12 @@ class Messages extends Component{
 	render(){
 		console.log(this.state)
 		return(
-			<div className="messageWindow">
+			<div className="card rounded col-lg-6">
 				<span onClick={this.closeWindow}>x</span>
-				<h2>Message to:</h2>
-				<h3>{this.props.foundUser}</h3>
+				<h3> {this.props.foundUser}</h3>
 				{this.state.message? <MessageContainer message={this.state.message} allMessages={this.allMessages}/> : null}
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" name="text" placeholder="Type here ..." onChange={this.handleChange}/>
+					<input className="form-control no-border" type="text" name="text" placeholder="Write a message ..." onChange={this.handleChange}/>
 					<button>send</button>
 				</form>
 			</div>

@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom'
 
 const Diary = () =>{
 	return(
-		<div>
-			<div>
-				<h1>Blog</h1>
-				<p>______________</p>
-				<p>______________</p>
-				<p>______________</p>
-				<Link to="/write-diary">Write</Link>
+		<div className="col-lg-6 card rounded" style={{height: "7rem"}}>
+			<div class="row" style={{paddingTop: "1rem"}}>
+				<div className="col-lg-4">
+					<h5>Blog</h5>
+					<Link to="/write-diary">Write a post</Link>
+				</div>
+				<div className="col-lg-4">
+					
+				</div>
 			</div>
 		</div>
 	)
