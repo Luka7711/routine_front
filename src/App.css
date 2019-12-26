@@ -1,7 +1,6 @@
+
 body{
-	color:blue;
-	margin:1rem 5rem;
-	background:orange;
+	background-color:blue;
 }
 
 img{
@@ -24,4 +23,28 @@ img{
 	height:19rem;
 	border:1px solid grey;
 	display: inline-block;
+}
+
+.jumbotron{
+	margin-top:1rem;
+	height:40rem;
+}
+
+#jum{
+	background: url(https://images.unsplash.com/photo-1507120410856-1f35574c3b45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+	background-size: cover;
+}
+
+#content{
+	margin-top:2rem;
+}
+
+#to-do1:hover{
+	background-color: orange;
+	transition: .6s;
+	cursor: pointer;
+}
+
+.icon{
+	font-size:2rem;
 }

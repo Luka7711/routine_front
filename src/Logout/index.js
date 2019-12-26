@@ -41,7 +41,7 @@ class Logout extends Component {
 			<>
 				<Link to="/profile"><li className="nav-link">Profile</li></Link>
 				<li className="nav-link">Friends</li>
-				<li className="nav-link">Notification</li>
+				<li className="nav-link">Notifications</li>
 				<li className="nav-link" onClick={this.handleLogout}>Logout</li>
 			</>
 		)

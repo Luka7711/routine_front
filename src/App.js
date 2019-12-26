@@ -187,13 +187,13 @@ class App extends Component {
     console.log(this.state);
     return (
       <Router>
-         <div className="App" onClick={this.handleRemoveForm}>  
-           <nav className="navbar navbar-expand-lg navbar-light bg-light">
+         <div className="App container" onClick={this.handleRemoveForm}>  
+           <nav className="navbar navbar-expand-lg navbar-light bg-light ">
             <div className="collapse navbar-collapse" id="navbarNav">
              <ul className="navbar-nav">
                <Link to="/"><li className="nav-item nav-link">Home</li></Link>
                {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
-               <li className="nav-link"><input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/></li>
+               <li className="nav-link" style={{paddingLeft:"30rem"}}><input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/></li>
              </ul>
              </div>
            </nav>
@@ -202,7 +202,8 @@ class App extends Component {
               :
               null
            }
-          <div className="container" style={{marginTop:"50px"}}>
+           <div className="jumbotron" id="jum">
+          <div className="container" id="content">
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
@@ -218,6 +219,7 @@ class App extends Component {
               null
             }    
             </div>
+             </div>
          </div>
       </Router>
     );

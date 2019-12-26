@@ -35,12 +35,17 @@ class Story extends Component  {
 		return(
 			<div>
 				<ul>
-					<Link to={`/diary-story/${this.props.story._id}`}><li>{this.props.story.date}</li>
-						<li>{this.props.story.title}</li>
+					<Link to={`/diary-story/${this.props.story._id}`}>
+						<li>{this.props.story.date} || {this.props.story.title}</li>
 						<li>{this.props.story.about}</li>
 					</Link>
-					<Link to={`/diary/edit/${this.props.story._id}`}><li>Edit</li></Link>
-					<li onClick={this.handleDelete}>Delete</li>
+				</ul>
+
+				<ul>
+					<Link to={`/diary/edit/${this.props.story._id}`}>
+						<li className="btn btn-success btn-sm">Edit</li>
+					</Link>
+					<li onClick={this.handleDelete} className="btn btn-danger btn-sm">Delete</li>
 				</ul>
 			</div>
 		)

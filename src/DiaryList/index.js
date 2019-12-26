@@ -51,11 +51,18 @@ class DiaryList  extends Component {
 			}) 
 		}
 		return(
-			<div>
-				<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.state.username}`}/>
-				<h3>{this.state.username}</h3>
-				<h2>Diary Stories</h2>
-				{this.state.stories? allStories :'loading'}
+			<div className="col-lg-12">
+				<div className="row">
+					<div className="col-lg-5 text-center">
+						<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.state.username}`}/>
+						<h5>{this.state.username}</h5>
+					</div>
+				
+					<div className="col-lg-7">
+						<h4>Diary Stories</h4>
+						{this.state.stories? allStories :'loading'}
+					</div>
+				</div>
 			</div>	
 		)
 	}
