@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faFeather } from '@fortawesome/free-solid-svg-icons';
+import Messages from '../Messages';
 
 class SearchProfile extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			showProfile:false,
-			foundUser:props.foundUser
+			foundUser:props.foundUser,
+			showMessage:false
 		}
 	}
 
@@ -43,23 +48,31 @@ class SearchProfile extends Component{
 	}
 
 	handleMessage = () => {
-		console.log("from handle message")
-		console.log(this.state)
-		this.props.handleShowMessageWindow(this.state.foundUser);
+		this.setState({
+			showMessage:true
+		})
+	}
+
+	closeMessage = () => {
+		this.setState({
+			showMessage:false
+		})
 	}
 	
 
 	render(){
+		// <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> 
+
 		{this.handleUserProfile()}
 		let profile;
 		if(this.state.diaryStories){
 			if(this.state.diaryStories.length >= 1){
 				profile = 
-					[<h4 key="1">{this.props.foundUser}</h4>,
-					<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
-					<p key="3">add friend</p>,
-					<p key="4" onClick={this.handleMessage}>send message</p>,
-					<p key="5">{this.state.diaryStories[0].about}</p>
+					[
+					<img key="1" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
+					<h4 key="2">{this.props.foundUser}</h4>,
+					<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="md"/> add friend</p>,
+					<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="md"/> send message</p>
 				]
 			}else{
 				profile = <p>no blogs yet</p>
@@ -67,9 +80,17 @@ class SearchProfile extends Component{
 
 		}
 		return(
-			<div>
-				<h1>Profile Page</h1>
-				{this.state.showProfile? profile : 'loading'}
+			<div className="row profilePage">
+				<div className="grey col-lg-6">
+					{this.state.showProfile? profile : 'loading'}
+				</div>
+				{this.state.showMessage ?
+					<div className="col-lg-5 card rounded message_container">
+						<Messages closeMessage={this.closeMessage} closeChatWindow={this.props.closeChatWindow} foundUser={this.props.foundUser} conversationId={this.props.conversationId} currentUser={this.props.username}/>
+					</div>
+					: null
+				}
+				
 			</div>
 		)
 	}

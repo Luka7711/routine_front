@@ -29,8 +29,7 @@ class App extends Component {
       quote:'',
       showResult:false,
       searchValue:'',
-      foundUser:'',
-      showMessageWindow:false
+      foundUser:''
     }
 
   }
@@ -184,6 +183,8 @@ class App extends Component {
 
   render(){
     //{this.state.loggedIn ? [<MessageContacts/>] : null}//
+    //  
+    //
     console.log(this.state);
     return (
       <Router>
@@ -212,12 +213,9 @@ class App extends Component {
               <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username}/>}/>
               <Route path='/diary-story/:number' component={StoryOne}/>
               <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
-              <Route path='/search-for' render={(props) => <SearchProfile {...props} foundUser={this.state.foundUser} handleShowMessageWindow={this.handleShowMessageWindow}/> } />
+              <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} handleShowMessageWindow={this.handleShowMessageWindow} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />
             </Switch>
-             {this.state.loggedIn && this.state.showMessageWindow ?
-              <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> :
-              null
-            }    
+           
             </div>
              </div>
          </div>
@@ -227,3 +225,7 @@ class App extends Component {
 }
 
 export default App;
+
+ //  {this.state.loggedIn && this.state.showMessageWindow ? <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> :
+ //              null
+ //            } 

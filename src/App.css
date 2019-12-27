@@ -36,7 +36,7 @@ img{
 }
 
 #content{
-	margin-top:2rem;
+	margin-top:1rem;
 }
 
 #to-do1:hover{
@@ -47,4 +47,59 @@ img{
 
 .icon{
 	font-size:2rem;
+}
+
+label, .grey{
+	color:lightgrey;
+}
+
+.sign{
+	color:black;
+}
+
+.stories_container{
+	height:25rem;
+	overflow: auto;
+}
+
+.closingIcon{
+	text-align: right;
+}
+
+.message_container{
+	position: relative;
+	overflow: auto;
+	height:32rem;
+}
+
+.closingIcon{
+	position: absolute;
+	top:1%;
+	left:95%;
+}
+
+.closingIcon:hover{
+	cursor: pointer;
+}
+
+.messageForm{
+	margin-top:1rem;
+}
+
+.message_content{
+	border:1px solid lightgrey;
+	margin-top:1rem;
+	height:23rem;
+	background:url(https://fsa.zobj.net/crop.php?r=1FFmeiuIqLkhVat_lJBYDAFQ14R_aR2OBXC0-QGa_mKz-Fm9VCFQFECKpyWEhvBg3E3GSh4LKsgRquR0sj55oOzv8nlWrvOXvM3WfkUoEWRAwCLKhpR9ZAv_9jJHVgD9_BH3yJtrcS6KRyVTLvj73TGSsM85E9Y7dKqmmZ-uHNu2wBqoTxRCJ6M7C6c);
+	background-size: cover;
+	overflow: auto;
+}
+
+.profilePage{
+	margin-top:1rem;
+}
+
+.pointer:hover{
+	cursor: pointer;
+	text-decoration:underline;
 }

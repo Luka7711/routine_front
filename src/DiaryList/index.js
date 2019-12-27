@@ -55,11 +55,11 @@ class DiaryList  extends Component {
 				<div className="row">
 					<div className="col-lg-5 text-center">
 						<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.state.username}`}/>
-						<h5>{this.state.username}</h5>
+						<h5 className="grey">{this.state.username}</h5>
 					</div>
 				
-					<div className="col-lg-7">
-						<h4>Diary Stories</h4>
+					<div className="col-lg-7 stories_container">
+						<h4 className="grey">Diary Stories</h4>
 						{this.state.stories? allStories :'loading'}
 					</div>
 				</div>

@@ -1,4 +1,8 @@
 import React, {Component} from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import MessageContainer from '../MessageContainer';
 import openSocket from 'socket.io-client';
 export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
@@ -44,7 +48,7 @@ class Messages extends Component{
 	}
 
 	closeWindow = () => {
-		this.props.closeChatWindow()
+		this.props.closeMessage()
 	}
 
 	handleSubmit = async(e) => {
@@ -83,15 +87,47 @@ class Messages extends Component{
 	render(){
 		console.log(this.state)
 		return(
-			<div className="card rounded col-lg-6">
-				<span onClick={this.closeWindow}>x</span>
-				<h3> {this.props.foundUser}</h3>
-				{this.state.message? <MessageContainer message={this.state.message} allMessages={this.allMessages}/> : null}
-				<form onSubmit={this.handleSubmit}>
-					<input className="form-control no-border" type="text" name="text" placeholder="Write a message ..." onChange={this.handleChange}/>
-					<button>send</button>
+			<>	
+				<FontAwesomeIcon icon={faTimes} size="lg" onClick={this.closeWindow} className="closingIcon"/>
+				<h5><FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> {this.props.foundUser}</h5>
+				<div className="message_content rounded">	
+					{this.state.message? <MessageContainer message={this.state.message} allMessages={this.allMessages}/> : null}
+					<h5 style={{textAlign:'right'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+					<h5 style={{color:'lightgrey'}}>Hello</h5>
+				</div>	
+				<form onSubmit={this.handleSubmit} className="messageForm">
+					<div className="row">
+						<div className="col-lg-10">
+							<input className="form-control no-border" type="text" name="text" placeholder="Write a message ..." onChange={this.handleChange}/>
+						</div>
+						<div className="col-lg-2">
+							<button className="btn btn-success sm"><FontAwesomeIcon icon={faPaperPlane}/></button>
+						</div>
+					</div>
 				</form>
-			</div>
+			</>
 		)
 	}
 }

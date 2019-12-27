@@ -25,7 +25,7 @@ class MessageContainer extends Component{
 		console.log(this.state);
 		const conversation = this.state.messages.map((item, i) => {
 			return (
-				<li key={i}>
+				<li key={i} style={{color:"lightgrey"}}>
 					{item.text}
 				</li>
 			)

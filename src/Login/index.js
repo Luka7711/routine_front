@@ -69,12 +69,12 @@ handleSubmit = async(event) => {
 							<div className="card-body d-flex justify-content-center">
 								<form className="form" onSubmit={this.handleSubmit}>
 									<div className="form-group">
-										<label>username: </label>
+										<label className="sign">username: </label>
 											<input className="form-control w-100" type="text" placeholder="username" name="username" onChange={this.handleChange} autocomplete="off"/>
 									
 									</div>
 									<div className="form-group">	
-										<label>password:</label>
+										<label className="sign">password:</label>
 											<input className="form-control w-100" type="password" placeholder="password" name="password" onChange={this.handleChange}/>
 										
 									</div>
