@@ -92,30 +92,6 @@ class Messages extends Component{
 				<h5><FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> {this.props.foundUser}</h5>
 				<div className="message_content rounded">	
 					{this.state.message? <MessageContainer message={this.state.message} allMessages={this.allMessages}/> : null}
-					<h5 style={{textAlign:'right'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
-					<h5 style={{color:'lightgrey'}}>Hello</h5>
 				</div>	
 				<form onSubmit={this.handleSubmit} className="messageForm">
 					<div className="row">

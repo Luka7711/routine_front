@@ -62,7 +62,7 @@ handleSubmit = async(event) => {
 			<div className="col-md-12 d-flex justify-content-center flex-column">
 				<div className="row" >
 					<div className="col-lg-6 col-md-8 mx-auto">
-						<div class="card rounded shadow shadow-sm">
+						<div className="card rounded shadow shadow-sm">
 							<div className="card-header text-center">
 								<h3>Sign in</h3>
 							</div>
@@ -70,7 +70,7 @@ handleSubmit = async(event) => {
 								<form className="form" onSubmit={this.handleSubmit}>
 									<div className="form-group">
 										<label className="sign">username: </label>
-											<input className="form-control w-100" type="text" placeholder="username" name="username" onChange={this.handleChange} autocomplete="off"/>
+											<input className="form-control w-100" type="text" placeholder="username" name="username" onChange={this.handleChange} autoComplete="off"/>
 									
 									</div>
 									<div className="form-group">	

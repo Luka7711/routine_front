@@ -66,35 +66,6 @@ class App extends Component {
     });
   };
 
-  handleShowMessageWindow = async(foundUser) => { 
-    //1. make post request to server
-    //2. pull up all messages from server
-    console.log('its aaaa')
-    console.log(foundUser);
-    console.log(this.state.username)
-    try{
-      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
-        '/message/' + this.state.username + '/' + foundUser, {
-         
-          method:"POST",
-          credentials:"include",
-          body: JSON.stringify(),
-          headers:{
-          'Content-Type': 'application/json'
-          }
-       });
-      
-      const parsedResponse = await response.json();
-      console.log(parsedResponse)
-       this.setState({
-          conversationId: parsedResponse.conversationData,
-          showMessageWindow:true
-       })
-    }catch(err){
-      console.log("something went wrong")
-    }
-   
-  }
 
   closeChatWindow = () => {
     this.setState({
@@ -185,7 +156,7 @@ class App extends Component {
     //{this.state.loggedIn ? [<MessageContacts/>] : null}//
     //  
     //
-    console.log(this.state);
+    
     return (
       <Router>
          <div className="App container" onClick={this.handleRemoveForm}>  
@@ -213,7 +184,7 @@ class App extends Component {
               <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username}/>}/>
               <Route path='/diary-story/:number' component={StoryOne}/>
               <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
-              <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} handleShowMessageWindow={this.handleShowMessageWindow} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />
+              <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />
             </Switch>
            
             </div>

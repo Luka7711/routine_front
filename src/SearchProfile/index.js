@@ -10,7 +10,8 @@ class SearchProfile extends Component{
 		this.state = {
 			showProfile:false,
 			foundUser:props.foundUser,
-			showMessage:false
+			showMessage:false,
+			currentUser:props.currentUser
 		}
 	}
 
@@ -48,9 +49,7 @@ class SearchProfile extends Component{
 	}
 
 	handleMessage = () => {
-		this.setState({
-			showMessage:true
-		})
+		this.handleShowMessageWindow()
 	}
 
 	closeMessage = () => {
@@ -58,11 +57,43 @@ class SearchProfile extends Component{
 			showMessage:false
 		})
 	}
+
+	handleShowMessageWindow = async() => { 
+    //1. make post request to server
+    //2. pull up all messages from server
+    console.log('its aaaa')
+    console.log(this.state.foundUser);
+    console.log(this.state.username)
+    try{
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
+        '/message/' + this.state.currentUser + '/' + this.state.foundUser, {
+         
+          method:"POST",
+          credentials:"include",
+          body: JSON.stringify(),
+          headers:{
+          'Content-Type': 'application/json'
+          }
+       });
+      
+      const parsedResponse = await response.json();
+      console.log(parsedResponse)
+       this.setState({
+          conversationId: parsedResponse.conversationData,
+          showMessage:true
+       })
+    }catch(err){
+      console.log("something went wrong")
+    }
+   
+  }
+
 	
 
 	render(){
 		// <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> 
-
+		console.log("state from searc profile")
+		console.log(this.state)
 		{this.handleUserProfile()}
 		let profile;
 		if(this.state.diaryStories){
@@ -86,7 +117,7 @@ class SearchProfile extends Component{
 				</div>
 				{this.state.showMessage ?
 					<div className="col-lg-5 card rounded message_container">
-						<Messages closeMessage={this.closeMessage} closeChatWindow={this.props.closeChatWindow} foundUser={this.props.foundUser} conversationId={this.props.conversationId} currentUser={this.props.username}/>
+						<Messages closeMessage={this.closeMessage} foundUser={this.props.foundUser} conversationId={this.state.conversationId} currentUser={this.state.currentUser}/>
 					</div>
 					: null
 				}

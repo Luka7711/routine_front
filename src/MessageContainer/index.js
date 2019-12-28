@@ -10,16 +10,9 @@ class MessageContainer extends Component{
 			messages: props.message,
 			count: 0
 		}
-
-	
-		setInterval(function(){
-			console.log(props.allMessages())},
-		1000)
 	}
-
-
+		
 	
-
 	render(){
 		console.log("message container")
 		console.log(this.state);
@@ -30,6 +23,8 @@ class MessageContainer extends Component{
 				</li>
 			)
 		})
+
+
 		return(
 			<div>
 				<ul>

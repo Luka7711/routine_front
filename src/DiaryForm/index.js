@@ -67,7 +67,7 @@ class DiaryForm extends Component{
 								</label>
 							</div>
 								<label>Title:
-									<input className="form-control" type="text" onChange={this.handleChange} name="title" autocomplete="off"/>
+									<input className="form-control" type="text" onChange={this.handleChange} name="title" autoComplete="off"/>
 								</label>
 							</div>
 							
