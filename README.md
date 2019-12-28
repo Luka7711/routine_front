@@ -13,7 +13,7 @@ npm start
 * News Review
 
 ![GitHub Logo](/images/proj_img2.png)
-Format: ![Alt Text](url)
+
 
 
 
