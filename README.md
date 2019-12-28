@@ -1,5 +1,5 @@
 # Routine -Blog Chat app 
-The app was created with React, Bootstrap 4.4.1
+The app was created with React, Bootstrap 4.4.1, Express
 
 ## Set up
 ```
