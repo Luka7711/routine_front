@@ -12,6 +12,9 @@ npm start
 * Messenger
 * News Review
 
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
+
 
 
 
