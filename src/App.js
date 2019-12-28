@@ -59,7 +59,7 @@ class App extends Component {
       showMessageWindow:false,
       diaryStories:[]
     });
-  };
+  }
 
 
   closeChatWindow = () => {
