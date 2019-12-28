@@ -34,11 +34,6 @@ class App extends Component {
 
   }
 
-  // componentDidMount(){
-  //   this.handleQuotes();
-  //   setInterval(() => this.handleQuotes(), 60000);
-  // }
-
   handleUsername = (user) => {
     this.setState({
       username:user
@@ -72,29 +67,6 @@ class App extends Component {
       conversationId:'',
       showMessageWindow:false
     })
-  }
-
-  handleQuotes = async() => {
-    try{
-        const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/routine/quotes', {
-            method:'GET',
-            credentials:'include'
-        });
-        const parsedResponse = await response.json();
-        
-        if(parsedResponse.status === 200){
-          this.setState({
-            quote:parsedResponse.data
-          })
-        }else{
-          this.setState({
-            quote:'nothin'
-          })
-        }
-    }catch(err){
-      console.log(err);
-      console.log('Something went wrong, data is not mined')
-    }
   }
 
   handleChange = async(e) =>{
@@ -153,9 +125,6 @@ class App extends Component {
   }
 
   render(){
-    //{this.state.loggedIn ? [<MessageContacts/>] : null}//
-    //  
-    //
     
     return (
       <Router>
@@ -197,6 +166,3 @@ class App extends Component {
 
 export default App;
 
- //  {this.state.loggedIn && this.state.showMessageWindow ? <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> :
- //              null
- //            } 
