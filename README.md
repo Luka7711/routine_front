@@ -3,7 +3,7 @@ The app was created with React, Bootstrap 4.4.1
 
 ## Set up
 ```
-npm instal
+npm install
 npm start
 ```
 
@@ -11,5 +11,7 @@ npm start
 * Personal blog
 * Messenger
 * News Review
+
+
 
 
