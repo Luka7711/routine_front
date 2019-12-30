@@ -10,12 +10,18 @@ class MessageContainer extends Component{
 			messages: props.message,
 			count: 0
 		}
+
+		this.updateMessages = this.updateMessages.bind(this)
 	}
-		
-	
+
+	updateMessages =()=>{
+		this.setState({
+			count: this.state.count+1
+		})
+		let counter = setInterval(this.updateMessages, 1000);
+	}
+
 	render(){
-		console.log("message container")
-		console.log(this.state);
 		const conversation = this.state.messages.map((item, i) => {
 			return (
 				<li key={i} style={{color:"lightgrey"}}>

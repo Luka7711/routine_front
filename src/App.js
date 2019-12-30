@@ -113,16 +113,7 @@ class App extends Component {
     this.setState({
       showResult:false
     })
-  }
-
-  componentDidMount(){
-    this.sendSocket()
-  }
-
-  sendSocket(){
-      socket.emit("messages", "HEllO people");
-      console.log("message just sent");
-  }
+  };
 
   render(){
     

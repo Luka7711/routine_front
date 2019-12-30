@@ -48,7 +48,7 @@ class Messages extends Component{
 	}
 
 	closeWindow = () => {
-		this.props.closeMessage()
+		this.props.closeMessage();
 	}
 
 	handleSubmit = async(e) => {
@@ -74,7 +74,7 @@ class Messages extends Component{
 
 	sendSocket(){
 		socket.emit('messages', this.state.messages);
-		console.log('sending messages from client')
+		console.log('sending messages from client');
 	}
 
 	componentWillUmount(){
@@ -85,7 +85,6 @@ class Messages extends Component{
 		})
 	}
 	render(){
-		console.log(this.state)
 		return(
 			<>	
 				<FontAwesomeIcon icon={faTimes} size="lg" onClick={this.closeWindow} className="closingIcon"/>

@@ -61,9 +61,6 @@ class SearchProfile extends Component{
 	handleShowMessageWindow = async() => { 
     //1. make post request to server
     //2. pull up all messages from server
-    console.log('its aaaa')
-    console.log(this.state.foundUser);
-    console.log(this.state.username)
     try{
       const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
         '/message/' + this.state.currentUser + '/' + this.state.foundUser, {
@@ -92,8 +89,6 @@ class SearchProfile extends Component{
 
 	render(){
 		// <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> 
-		console.log("state from searc profile")
-		console.log(this.state)
 		{this.handleUserProfile()}
 		let profile;
 		if(this.state.diaryStories){
