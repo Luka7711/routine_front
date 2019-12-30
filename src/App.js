@@ -113,7 +113,7 @@ class App extends Component {
     this.setState({
       showResult:false
     })
-  };
+  }
 
   render(){
     
