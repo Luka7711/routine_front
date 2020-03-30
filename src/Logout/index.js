@@ -40,9 +40,9 @@ class Logout extends Component {
 		return(
 			<>
 				<Link to="/profile"><li className="nav-link">Profile</li></Link>
-				<Link><li className="nav-link pointer">Friends</li></Link>
-				<Link><li className="nav-link pointer">Notifications</li></Link>
-				<Link><li className="nav-link pointer" onClick={this.handleLogout}>Logout</li></Link>
+				<li className="nav-link pointer">Friends</li>
+				<li className="nav-link pointer">Notifications</li>
+				<li className="nav-link pointer" onClick={this.handleLogout}>Logout</li>
 			</>
 		)
 	}

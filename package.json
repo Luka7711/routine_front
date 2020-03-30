@@ -15,6 +15,7 @@
     "@typescript-eslint/parser": "^1.13.0",
     "bootstrap": "^4.4.1",
     "react": "^16.9.0",
+    "react-append-to-body": "^2.0.25",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^3.0.0"
   }
 }

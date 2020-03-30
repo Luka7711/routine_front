@@ -33,12 +33,12 @@ class SearchProfile extends Component{
 				credentials:'include'
 			});
 			const parsedResponse = await response.json();
-			if(parsedResponse.status == 200){
+			if(parsedResponse.status === 200){
 				this.setState({
 					diaryStories: parsedResponse.stories.diaryStory,
 					showProfile:true
 				})
-			}else if(parsedResponse.status == 404){
+			}else if(parsedResponse.status === 404){
 				this.setState({
 					showProfile:false
 				})
@@ -89,7 +89,7 @@ class SearchProfile extends Component{
 
 	render(){
 		// <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> 
-		{this.handleUserProfile()}
+		this.handleUserProfile();
 		let profile;
 		if(this.state.diaryStories){
 			if(this.state.diaryStories.length >= 1){
@@ -97,8 +97,8 @@ class SearchProfile extends Component{
 					[
 					<img key="1" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
 					<h4 key="2">{this.props.foundUser}</h4>,
-					<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="md"/> add friend</p>,
-					<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="md"/> send message</p>
+					<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="sm"/> add friend</p>,
+					<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="sm"/> send message</p>
 				]
 			}else{
 				profile = <p>no blogs yet</p>

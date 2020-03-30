@@ -54,7 +54,6 @@ handleSubmit = async(event) => {
 }
 
 	render(){
-		console.log(process.env.REACT_APP_BACKEND_URL);
 		if(this.state.redirect) {
 			return <Redirect to="/"/>
 		}
