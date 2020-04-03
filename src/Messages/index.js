@@ -71,11 +71,11 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 				<FontAwesomeIcon icon={faTimes} size="lg" onClick={closeWindow} className="closingIcon"/>
 				
 				<h5>
-					<FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser}
+					<FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser} <span style={{color:"green"}}>typing...</span>
 				</h5>
 				
 				<div className="message_content rounded">	
-					
+						
 						<MessageContainer messages={messages}/> 
 						
 
