@@ -12,10 +12,8 @@ export default ({messages}) => {
 
 	useEffect(()=>{
 		socket.on("messages", msg => {
-			console.log("message being sent")
 		})
 	})
-	console.log(messages);
 	return (
 			<div>
 				<ul id="text_container">
