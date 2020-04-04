@@ -54,7 +54,7 @@ class DiaryList  extends Component {
 			<div className="col-lg-12">
 				<div className="row">
 					<div className="col-lg-5 text-center">
-						<img key="2" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.state.username}`}/>
+						<img key="2" alt="not found" src={`https://chatblog-back.herokuapp.com/auth/user-avatar/${this.state.username}`}/>
 						<h5 className="grey">{this.state.username}</h5>
 					</div>
 				
