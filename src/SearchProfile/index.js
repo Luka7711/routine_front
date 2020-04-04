@@ -95,7 +95,7 @@ class SearchProfile extends Component{
 			if(this.state.diaryStories.length >= 1){
 				profile = 
 					[
-					<img key="1" alt="not found" src={`http://localhost:9000/auth/user-avatar/${this.props.foundUser}`}/>,
+					<img key="1" alt="not found" src={`https://chatblog-back.herokuapp.com/auth/user-avatar/${this.props.foundUser}`}/>,
 					<h4 key="2">{this.props.foundUser}</h4>,
 					<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="sm"/> add friend</p>,
 					<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="sm"/> send message</p>
