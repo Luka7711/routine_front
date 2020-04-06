@@ -124,16 +124,16 @@ class App extends Component {
             <div className="collapse navbar-collapse" id="navbarNav">
              <ul className="navbar-nav">
                <Link to="/"><li className="nav-item nav-link">Home</li></Link>
-               {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
-               <li className="nav-link" style={{paddingLeft:"30rem"}}><input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/></li>
+                 {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
+                 {this.state.showResult ? <SearchResult foundUser={this.state.foundUser}/> : null}
+                
+                <li className="nav-link" style={{marginLeft:"25rem"}}>
+                  <input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/>
+                </li>
              </ul>
              </div>
            </nav>
-           {this.state.showResult ?
-              <SearchResult foundUser={this.state.foundUser}/>
-              :
-              null
-           }
+        
            <div className="jumbotron" id="jum">
           <div className="container" id="content">
             <Switch>

@@ -1,12 +1,13 @@
 
 body{
 	background-color:blue;
+	font-size: 12px;
 }
 
 img{
 	width:auto;
 	height:150px;
-	border-radius: 100%;
+	border-radius: 5%;
 }
 
 .messageContacts{
@@ -31,11 +32,13 @@ img{
 }
 
 #jum{
-	background: #202026;
+	background-image: url('https://lh3.googleusercontent.com/proxy/CetQHVqCWk6RtSJMIzCs5_Me57BNZvLM9l6Yc8W0EmKZYRGX1LPuOJs2bJTzCXpuTrIDeLsUBz1mldiZq9qsa-3ejR4Pr7pNFpyqk-ssUoc');
+	background-size: cover;
 }
 
 #content{
 	margin-top:1rem;
+	padding:0 4rem;
 }
 
 #to-do1:hover{
@@ -89,8 +92,7 @@ label, .grey{
 	border:1px solid lightgrey;
 	margin-top:1rem;
 	height:23rem;
-	background:url(https://fsa.zobj.net/crop.php?r=1FFmeiuIqLkhVat_lJBYDAFQ14R_aR2OBXC0-QGa_mKz-Fm9VCFQFECKpyWEhvBg3E3GSh4LKsgRquR0sj55oOzv8nlWrvOXvM3WfkUoEWRAwCLKhpR9ZAv_9jJHVgD9_BH3yJtrcS6KRyVTLvj73TGSsM85E9Y7dKqmmZ-uHNu2wBqoTxRCJ6M7C6c);
-	background-size: cover;
+	background-color: #ffffff;
 	overflow: auto;
 }
 
@@ -102,3 +104,14 @@ label, .grey{
 	cursor: pointer;
 	text-decoration:underline;
 }
+
+.profile{
+	color:black;
+	margin-top:1rem;
+}
+
+#text-container li{
+	color:black;
+}
+
+

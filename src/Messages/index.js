@@ -43,7 +43,8 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 		e.preventDefault();
 		
 		try{
-		
+			socket.emit("messages", text);
+			setText("");
 			const response = await fetch(
 				process.env.REACT_APP_BACKEND_URL + 
 				"/message/texting/" + currentUser + 
@@ -56,8 +57,7 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 					}
 				});
 				//sending typed text to server through socket;
-				socket.emit("messages", text);
-				setText("");
+				
 		}catch(err){
 			console.log(err);
 		}
