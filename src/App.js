@@ -16,6 +16,8 @@ import SearchProfile from './SearchProfile';
 import MessageContacts from './MessageContacts';
 import Messages from './Messages';
 import openSocket from 'socket.io-client';
+import coverImage from './img/cover.jpg';
+import logo from './img/logo.gif';
 export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
 
 
@@ -123,6 +125,8 @@ class App extends Component {
            <nav className="navbar navbar-expand-lg navbar-light bg-light ">
             <div className="collapse navbar-collapse" id="navbarNav">
              <ul className="navbar-nav">
+              <div style={{width:"3rem", height:"3rem", backgroundImage:`url(${logo})`, backgroundSize:'cover', backgroundPosition:'center', borderRadius:'5px'}}>
+              </div>
                <Link to="/"><li className="nav-item nav-link">Home</li></Link>
                  {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
                  {this.state.showResult ? <SearchResult foundUser={this.state.foundUser}/> : null}
@@ -134,7 +138,7 @@ class App extends Component {
              </div>
            </nav>
         
-           <div className="jumbotron" id="jum">
+           <div className="jumbotron" id="jum" style={{backgroundImage:`url(${coverImage})`}}>
           <div className="container" id="content">
             <Switch>
               <Route path="/" exact component={Home}/>
