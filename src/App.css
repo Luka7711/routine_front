@@ -54,6 +54,18 @@ label, .grey{
 	color:lightgrey;
 }
 
+.grey{
+	background: grey;
+    border-radius: 2px;
+    margin-bottom: 0;
+    padding: 1rem;
+}
+
+#title{
+	font-weight: 800;
+
+}
+
 .sign{
 	color:black;
 }
@@ -111,6 +123,10 @@ label, .grey{
 
 #text-container li{
 	color:black;
+}
+
+ul{
+	list-style-type: none;
 }
 
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Story from '../Story'
 
+
 class DiaryList  extends Component {
 	constructor(props){
 		super(props);
@@ -54,8 +55,17 @@ class DiaryList  extends Component {
 			<div className="col-lg-12">
 				<div className="row">
 					<div className="col-lg-5 text-center">
-						<img key="2" alt="not found" src={`https://chatblog-back.herokuapp.com/auth/user-avatar/${this.state.username}`}/>
-						<h5 className="grey">{this.state.username}</h5>
+						<img key="2" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.state.username}`} 
+							style={{
+									backgroundSize:"cover", 
+									backgroungPosition:"center",
+									width:"4rem", 
+									height:"4rem", 
+									borderRadius:"50%",
+									backgroundImage:"url(https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg)"
+							}}
+						/>
+						<h5>{this.state.username}</h5>
 					</div>
 				
 					<div className="col-lg-7 stories_container">

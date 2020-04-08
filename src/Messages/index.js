@@ -83,10 +83,10 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 				{/*form element to send new message*/}
 				<form onSubmit={handleSubmit} className="messageForm">
 					<div className="row">
-						<div className="col-lg-10">
+						<div className="col-lg-10 col-md-4 col-sm-6 col-xs-6">
 							<input id="message_input" className="form-control no-border" type="text" value={text} name="text" onChange={handleChange}/>
 						</div>
-						<div className="col-lg-2">
+						<div className="col-lg-2 col-md-4 col-sm-6 col-xs6">
 							<button className="btn btn-success sm"><FontAwesomeIcon icon={faPaperPlane}/></button>
 						</div>
 					</div>
