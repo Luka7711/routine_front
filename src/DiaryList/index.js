@@ -1,12 +1,40 @@
 import React, {Component} from 'react';
-import Story from '../Story'
-
+import Story from '../Story';
+import ContactList from '../ContactList';
+const style={
+	img: {
+		backgroundSize:"cover", 
+		backgroungPosition:"center",
+		width:"2.5rem", 
+		height:"2.5rem", 
+		borderRadius:"50%"
+	},
+	username: {
+		color:"lightgrey", 
+		padding:"10px 0 0 10px", 
+		color:"#202428"
+	},
+	contactList: {
+		backgroundColor:"#ffffff",
+		height:"65vh",
+		padding:0,
+		borderRadius:'5px',
+		overflow:'scroll'
+	},
+	avatarContainer: {
+		width:"100%", 
+		padding:"10px", 
+		backgroundColor:"#f9c132", 
+		borderRadius:"5px"
+	}
+}
 
 class DiaryList  extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			username: props.username,
+			contactList: props.contactList,
 			message:''
 		}
 	}
@@ -23,9 +51,7 @@ class DiaryList  extends Component {
 			})
 
 			const parsedResponse = await response.json();
-			console.log(parsedResponse);
 			if(parsedResponse.status === 200){
-				console.log('successful request')
 				this.setState({
 					stories: parsedResponse.data.diaryStory,
 					message:parsedResponse.message
@@ -54,18 +80,15 @@ class DiaryList  extends Component {
 		return(
 			<div className="col-lg-12">
 				<div className="row">
-					<div className="col-lg-5 text-center">
-						<img key="2" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.state.username}`} 
-							style={{
-									backgroundSize:"cover", 
-									backgroungPosition:"center",
-									width:"4rem", 
-									height:"4rem", 
-									borderRadius:"50%",
-									backgroundImage:"url(https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg)"
-							}}
-						/>
-						<h5>{this.state.username}</h5>
+					<div className="col-lg-3" style={style.contactList}>
+						<div className="user_avatar_container" style={style.avatarContainer}>
+							<img key="2" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.state.username}`} style={style.img} />
+							<span style={style.username}>{this.state.username}</span>
+						</div>
+						{/* add new component for contacts here
+
+						*/}
+						{ this.state.contactList ? <ContactList contactList={this.state.contactList}/> : null }
 					</div>
 				
 					<div className="col-lg-7 stories_container">

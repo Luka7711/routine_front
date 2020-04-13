@@ -28,13 +28,13 @@ class App extends Component {
       username:'',
       diaryStories:[],
       loggedIn: false,
-      quote:'',
       showResult:false,
       searchValue:'',
       foundUser:''
     }
 
   }
+
 
   handleUsername = (user) => {
     this.setState({
@@ -70,6 +70,12 @@ class App extends Component {
       showMessageWindow:false
     })
   }
+
+  /* 1. send request to get 
+     2. Find conversation id where array has 
+     [id(user1), id(user2)];
+
+  with current user*/
 
   handleChange = async(e) =>{
     e.persist();
@@ -117,8 +123,30 @@ class App extends Component {
     })
   }
 
+  getContactList = async() => {
+    try{
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/contact-list/${this.state.username}`, {
+        method:"GET",
+        credentials:"include"
+      })
+      const parsedResponse = await response.json();
+      console.log(parsedResponse.data);
+      if(parsedResponse.status === 200){
+        this.setState({
+          contactList:parsedResponse.data
+        })
+      }
+
+    }catch(err) {
+      console.log(err);
+    }
+  }
+
   render(){
-    
+    /*as soon as user logges to site, pull up
+    [message, contacts] data
+    */
+    if(this.state.loggedIn === true) this.getContactList()
     return (
       <Router>
          <div className="App container" onClick={this.handleRemoveForm}>  
@@ -145,7 +173,7 @@ class App extends Component {
               <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
               <Route path='/signup' render={(props) =><Signup {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
               <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username} handleDiary={this.handleDiary}/>} />
-              <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username}/>}/>
+              <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username} contactList={this.state.contactList}/>} />
               <Route path='/diary-story/:number' component={StoryOne}/>
               <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
               <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />

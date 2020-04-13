@@ -108,7 +108,7 @@ class SearchProfile extends Component{
 		}
 		return(
 			<div className="row profilePage">
-				<div className="grey col-lg-6">
+				<div className="grey col-lg-6" style={{background:"#ffff", borderRadius:"5px"}}>
 					{this.state.showProfile? profile : 'loading'}
 				</div>
 				{this.state.showMessage ?
