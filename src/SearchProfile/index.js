@@ -88,12 +88,8 @@ class SearchProfile extends Component{
 	
 
 	render(){
-		// <Messages closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> 
 		this.handleUserProfile();
-		let profile;
-		if(this.state.diaryStories){
-			if(this.state.diaryStories.length >= 1){
-				profile = 
+				let profile = 
 					[	<img key="1" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.props.foundUser}`}/>,
 					<div className="profile">
 						<h5 key="2">{this.props.foundUser}</h5>
@@ -101,11 +97,6 @@ class SearchProfile extends Component{
 						<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="sm"/> send message</p>
 					</div>
 				]
-			}else{
-				profile = <p>no blogs yet</p>
-			}
-
-		}
 		return(
 			<div className="row profilePage">
 				<div className="grey col-lg-6" style={{background:"#ffff", borderRadius:"5px"}}>

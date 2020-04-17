@@ -19,7 +19,7 @@ const style={
 		height:"65vh",
 		padding:0,
 		borderRadius:'5px',
-		overflow:'scroll'
+		overflowY:'scroll'
 	},
 	avatarContainer: {
 		width:"100%", 
@@ -85,9 +85,6 @@ class DiaryList  extends Component {
 							<img key="2" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.state.username}`} style={style.img} />
 							<span style={style.username}>{this.state.username}</span>
 						</div>
-						{/* add new component for contacts here
-
-						*/}
 						{ this.state.contactList ? <ContactList contactList={this.state.contactList}/> : null }
 					</div>
 				

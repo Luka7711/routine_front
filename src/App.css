@@ -71,7 +71,7 @@ label, .grey{
 }
 
 .stories_container{
-	height:25rem;
+	height:65vh;
 	overflow: auto;
 }
 
@@ -129,4 +129,7 @@ ul{
 	list-style-type: none;
 }
 
+.list_hover:hover {
+	background-color: lightgrey;
+}
 

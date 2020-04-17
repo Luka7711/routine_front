@@ -130,7 +130,6 @@ class App extends Component {
         credentials:"include"
       })
       const parsedResponse = await response.json();
-      console.log(parsedResponse.data);
       if(parsedResponse.status === 200){
         this.setState({
           contactList:parsedResponse.data

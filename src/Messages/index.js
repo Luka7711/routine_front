@@ -39,12 +39,12 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	//need to add message to DB
 	//update Message component
 	let handleSubmit = async(e) => {
-		
-		e.preventDefault();
-		
+	e.preventDefault();
 		try{
+		if(text.length !== 0 ){
+			console.log("text length is not 0");
+			
 			socket.emit("messages", text);
-			setText("");
 			const response = await fetch(
 				process.env.REACT_APP_BACKEND_URL + 
 				"/message/texting/" + currentUser + 
@@ -57,7 +57,8 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 					}
 				});
 				//sending typed text to server through socket;
-				
+			setText("")
+		}			
 		}catch(err){
 			console.log(err);
 		}

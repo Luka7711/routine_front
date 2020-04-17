@@ -32,6 +32,7 @@ handleSubmit = async(event) => {
 		});
 
 		const parsedResponse = await response.json();
+		console.log(parsedResponse.status, "status")
 		if(parsedResponse.status === 200){
 			
 			this.props.handleUsername(this.state.username);
@@ -68,7 +69,7 @@ handleSubmit = async(event) => {
 							<div className="card-body d-flex justify-content-center">
 								<form className="form" onSubmit={this.handleSubmit}>
 									<div className="form-group">
-										<label className="sign">username: </label>
+										<label className="sign">username: {this.state.message}</label>
 											<input className="form-control w-100" type="text" placeholder="username" name="username" onChange={this.handleChange} autoComplete="off"/>
 									
 									</div>
