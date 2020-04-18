@@ -6,7 +6,7 @@ const style={
 		backgroungPosition:"center",
 		width:"2.5rem", 
 		height:"2.5rem", 
-		borderTopRighRadius:"50%"
+		borderRadius:"50%"
 	},
 	username: {
 		color:"lightgrey", 

@@ -32,9 +32,7 @@ class App extends Component {
       searchValue:'',
       foundUser:''
     }
-
   }
-
 
   handleUsername = (user) => {
     this.setState({
@@ -51,7 +49,8 @@ class App extends Component {
   handleLoggedIn = () => {
     this.setState({
       loggedIn:true
-    })
+    });
+    this.getContactList()
   }
 
   handleLogout = () => {
@@ -142,10 +141,6 @@ class App extends Component {
   }
 
   render(){
-    /*as soon as user logges to site, pull up
-    [message, contacts] data
-    */
-    if(this.state.loggedIn === true) this.getContactList()
     return (
       <Router>
          <div className="App container" onClick={this.handleRemoveForm}>  
@@ -175,7 +170,7 @@ class App extends Component {
               <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username} contactList={this.state.contactList}/>} />
               <Route path='/diary-story/:number' component={StoryOne}/>
               <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
-              <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />
+              <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} currentUser={this.state.username}/> } />
             </Switch>
            
             </div>

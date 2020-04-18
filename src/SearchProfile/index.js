@@ -11,15 +11,23 @@ class SearchProfile extends Component{
 			showProfile:false,
 			foundUser:props.foundUser,
 			showMessage:false,
-			currentUser:props.currentUser
+			currentUser:props.currentUser,
+			num:1
 		}
+	}
+
+	componentDidMount(){
+		this.handleUserProfile();
+		this.conversation();
 	}
 
 	componentWillUnmount(){
 		this.setState({
 			showProfile:false,
 			diaryStories:'',
-			foundUser:''
+			foundUser:'',
+			contactList:'',
+			conversationId:''
 		})
 	}
 
@@ -48,55 +56,51 @@ class SearchProfile extends Component{
 		}
 	}
 
-	handleMessage = () => {
-		this.handleShowMessageWindow()
-	}
-
 	closeMessage = () => {
 		this.setState({
 			showMessage:false
 		})
 	}
 
-	handleShowMessageWindow = async() => { 
-    //1. make post request to server
-    //2. pull up all messages from server
-    try{
-      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
-        '/message/' + this.state.currentUser + '/' + this.state.foundUser, {
-         
-          method:"POST",
-          credentials:"include",
-          body: JSON.stringify(),
-          headers:{
-          'Content-Type': 'application/json'
-          }
-       });
-      
-      const parsedResponse = await response.json();
-      console.log(parsedResponse)
-       this.setState({
-          conversationId: parsedResponse.conversationData,
-          showMessage:true
-       })
-    }catch(err){
-      console.log("something went wrong")
-    }
-   
-  }
+	showMessage = () => {
+		this.setState({
+			showMessage:true
+		})
+	}
+	conversation = async() => { 
+   		try{
+   			console.log("call me")
+      		const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
+        		'/message/receive-id/text/' + this.state.currentUser + '/' + this.state.foundUser, {
+         		
+         		 method:"GET",
+          		 credentials:"include"
+       		});
+      		// get message list from DB 
+    	    const parsedResponse = await response.json();
+       		//add messages to state & show message container
+       		console.log(parsedResponse, "response from back end")
+       		this.setState({
+       			conversationId:parsedResponse.conversationId
+       		})
+    	}
+    	catch(err){
+      		console.log("something went wrong")
+    	} 
+  	}
 
-	
 
 	render(){
-		this.handleUserProfile();
 				let profile = 
 					[	<img key="1" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.props.foundUser}`}/>,
-					<div className="profile">
-						<h5 key="2">{this.props.foundUser}</h5>
-						<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="sm"/> add friend</p>
-						<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="sm"/> send message</p>
-					</div>
-				]
+						<div className="profile">
+							<h5 key="2">{this.props.foundUser}</h5>
+							<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="sm"/> add friend</p>
+							<p className="pointer" key="4" onClick={this.showMessage}>
+								<FontAwesomeIcon icon={faFeather} size="sm"/> send message
+							</p>
+						</div>
+					]
 		return(
 			<div className="row profilePage">
 				<div className="grey col-lg-6" style={{background:"#ffff", borderRadius:"5px"}}>
@@ -104,7 +108,7 @@ class SearchProfile extends Component{
 				</div>
 				{this.state.showMessage ?
 					<div className="col-lg-5 card rounded message_container">
-						<Messages closeMessage={this.closeMessage} foundUser={this.props.foundUser} conversationId={this.state.conversationId} currentUser={this.state.currentUser}/>
+						<Messages conversationId={this.state.conversationId} closeMessage={this.closeMessage} foundUser={this.props.foundUser} currentUser={this.state.currentUser}/>
 					</div>
 					: null
 				}

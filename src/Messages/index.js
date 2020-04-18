@@ -10,19 +10,21 @@ export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
 
 export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	const [text, setText] = useState("");
-	const [messages, setMessages] = useState([]);
-
+	const [messages, setMessages] 	= useState([]);
+	const [convoID, setConvoID] 	= useState(conversationId)
 	//retrieve data when Message container is bein rendered
 	let getData = async() => {
-		try{		
-			let response = await fetch(process.env.REACT_APP_BACKEND_URL + 
-				"/message/my-conversation/" + conversationId, {
-					method:"GET",
-					credentials:'include'
-				});
-			let parsedResponse = await response.json();
-			//all message being pulled from contacts chat
-			setMessages(parsedResponse.messages);
+		try{
+			if(convoID !== null){		
+				let response = await fetch(process.env.REACT_APP_BACKEND_URL + 
+					"/message/my-conversation/" + conversationId, {
+						method:"GET",
+						credentials:'include'
+					});
+				let parsedResponse = await response.json();
+				//all message being pulled from contacts chat
+				setMessages(parsedResponse.messages);
+			}
 		}catch(err){
 			console.log(err);
 		}
@@ -32,34 +34,40 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	useEffect(() => {
 		getData();
 	});
+	
 	//close MessageContainer 
 	let closeWindow = () => {
 		closeMessage();
 	} 
+	
 	//need to add message to DB
 	//update Message component
 	let handleSubmit = async(e) => {
-	e.preventDefault();
+		e.preventDefault();
 		try{
-		if(text.length !== 0 ){
-			console.log("text length is not 0");
-			
-			socket.emit("messages", text);
-			const response = await fetch(
-				process.env.REACT_APP_BACKEND_URL + 
-				"/message/texting/" + currentUser + 
-				"/" + conversationId, {
-					method:"POST",
-					credentials:"include",
-					body:JSON.stringify({text:text}),
-					headers:{
-						"Content-type":"application/json"
-					}
+			if(text.length !== 0 ){
+
+				socket.emit("messages", text);
+				const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/message/texting/" + currentUser + "/" + convoID, {
+						method:"POST",
+						credentials:"include",
+						body:JSON.stringify({
+						text:text,
+						shipper:currentUser,
+						receiver:foundUser
+						}),
+						headers:{
+							"Content-type":"application/json"
+						}
 				});
+				setText("");
+				const parsedResponse = await response.json();
 				//sending typed text to server through socket;
-			setText("")
-		}			
-		}catch(err){
+				console.log(parsedResponse, "data from handle submit");
+				setConvoID(parsedResponse.convoID);
+			}			
+		}
+		catch(err){
 			console.log(err);
 		}
 	}
@@ -67,6 +75,8 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	let handleChange = (e) => {
 		setText(e.target.value);
 	};
+
+
 	return ( 
 			<>
 				<FontAwesomeIcon icon={faTimes} size="lg" onClick={closeWindow} className="closingIcon"/>
@@ -85,7 +95,7 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 				<form onSubmit={handleSubmit} className="messageForm">
 					<div className="row">
 						<div className="col-lg-10 col-md-4 col-sm-6 col-xs-6">
-							<input id="message_input" className="form-control no-border" type="text" value={text} name="text" onChange={handleChange}/>
+							<input id="message_input" className="form-control no-border" type="text" value={text} name="text" onChange={handleChange} autoComplete="off"/>
 						</div>
 						<div className="col-lg-2 col-md-4 col-sm-6 col-xs6">
 							<button className="btn btn-success sm"><FontAwesomeIcon icon={faPaperPlane}/></button>
