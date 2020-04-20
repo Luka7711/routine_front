@@ -78,12 +78,12 @@ handleSubmit = async(e) => {
 								<form className="form" onSubmit={this.handleSubmit}>
 									<div className="form-group">
 										<label className="sign">username: {this.state.message}</label>
-										<input autocomplete="off" className="form-control w-100" placeholder="username" name="username" onChange={this.handleChange}/>
+										<input autoComplete="off" className="form-control w-100" placeholder="username" name="username" onChange={this.handleChange}/>
 									
 									</div>
 									<div className="form-group">	
 										<label className="sign">password:</label>
-										<input autocomplete="off" className="form-control w-100" placeholder="password" name="password" onChange={this.handleChange}/>
+										<input autoComplete="off" className="form-control w-100" placeholder="password" name="password" onChange={this.handleChange}/>
 										
 									</div>
 

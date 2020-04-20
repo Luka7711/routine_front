@@ -12,6 +12,7 @@ export default ({messages}) => {
 			return	 <li key={i}>{msg.text}</li>
 		})
 	}
+
 	return (
 			<div>
 				<ul id="text_container">

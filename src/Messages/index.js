@@ -17,14 +17,14 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 		try{
 			if(convoID !== null){		
 				let response = await fetch(process.env.REACT_APP_BACKEND_URL + 
-					"/message/my-conversation/" + conversationId, {
+					"/message/my-conversation/" + convoID, {
 						method:"GET",
 						credentials:'include'
 					});
 				let parsedResponse = await response.json();
 				//all message being pulled from contacts chat
 				setMessages(parsedResponse.messages);
-			}
+			} 
 		}catch(err){
 			console.log(err);
 		}
@@ -63,7 +63,6 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 				setText("");
 				const parsedResponse = await response.json();
 				//sending typed text to server through socket;
-				console.log(parsedResponse, "data from handle submit");
 				setConvoID(parsedResponse.convoID);
 			}			
 		}
@@ -75,21 +74,16 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	let handleChange = (e) => {
 		setText(e.target.value);
 	};
+	
+	console.log(convoID, 'conversation id')
 
 
 	return ( 
 			<>
 				<FontAwesomeIcon icon={faTimes} size="lg" onClick={closeWindow} className="closingIcon"/>
-				
-				<p>
-					<FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser} <span style={{color:"green", fontStyle:"italic"}}>typing...</span>
-				</p>
-				
-				<div className="message_content rounded">	
-						
-						<MessageContainer messages={messages}/> 
-						
-
+				<p><FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser} <span style={{color:"green", fontStyle:"italic"}}>typing...</span></p>	
+				<div className="message_content rounded">			
+					<MessageContainer messages={messages}/> 
 				</div>	
 				{/*form element to send new message*/}
 				<form onSubmit={handleSubmit} className="messageForm">

@@ -141,6 +141,9 @@ class App extends Component {
   }
 
   render(){
+    socket.on("messages", msg => {
+      this.getContactList();
+    })
     return (
       <Router>
          <div className="App container" onClick={this.handleRemoveForm}>  

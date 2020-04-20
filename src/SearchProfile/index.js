@@ -18,7 +18,6 @@ class SearchProfile extends Component{
 
 	componentDidMount(){
 		this.handleUserProfile();
-		this.conversation();
 	}
 
 	componentWillUnmount(){
@@ -69,7 +68,6 @@ class SearchProfile extends Component{
 	}
 	conversation = async() => { 
    		try{
-   			console.log("call me")
       		const response = await fetch(process.env.REACT_APP_BACKEND_URL + 
         		'/message/receive-id/text/' + this.state.currentUser + '/' + this.state.foundUser, {
          		
@@ -79,10 +77,9 @@ class SearchProfile extends Component{
       		// get message list from DB 
     	    const parsedResponse = await response.json();
        		//add messages to state & show message container
-       		console.log(parsedResponse, "response from back end")
        		this.setState({
        			conversationId:parsedResponse.conversationId
-       		})
+       		});
     	}
     	catch(err){
       		console.log("something went wrong")
@@ -91,6 +88,7 @@ class SearchProfile extends Component{
 
 
 	render(){
+			this.conversation()
 				let profile = 
 					[	<img key="1" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.props.foundUser}`}/>,
 						<div className="profile">
