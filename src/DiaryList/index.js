@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Story from '../Story';
 import ContactList from '../ContactList';
+import Messages from '../Messages';
+
 const style={
 	img: {
 		backgroundSize:"cover", 

@@ -24,7 +24,7 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 				let parsedResponse = await response.json();
 				//all message being pulled from contacts chat
 				setMessages(parsedResponse.messages);
-			} 
+			}
 		}catch(err){
 			console.log(err);
 		}
@@ -32,9 +32,9 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	//pull all messages between contacts when Messages 
 	//component is rendered
 	useEffect(() => {
-		getData();
-	});
-	
+		getData();	
+	})
+
 	//close MessageContainer 
 	let closeWindow = () => {
 		closeMessage();
@@ -48,13 +48,15 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 			if(text.length !== 0 ){
 
 				socket.emit("messages", text);
+				let date = new Date();
 				const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/message/texting/" + currentUser + "/" + convoID, {
 						method:"POST",
 						credentials:"include",
 						body:JSON.stringify({
 						text:text,
 						shipper:currentUser,
-						receiver:foundUser
+						receiver:foundUser,
+						timestamp: date
 						}),
 						headers:{
 							"Content-type":"application/json"
@@ -74,9 +76,6 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	let handleChange = (e) => {
 		setText(e.target.value);
 	};
-	
-	console.log(convoID, 'conversation id')
-
 
 	return ( 
 			<>

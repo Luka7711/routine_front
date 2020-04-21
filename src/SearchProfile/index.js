@@ -12,7 +12,7 @@ class SearchProfile extends Component{
 			foundUser:props.foundUser,
 			showMessage:false,
 			currentUser:props.currentUser,
-			num:1
+			conversationId:''
 		}
 	}
 
@@ -86,7 +86,6 @@ class SearchProfile extends Component{
     	} 
   	}
 
-
 	render(){
 			this.conversation()
 				let profile = 
@@ -98,7 +97,7 @@ class SearchProfile extends Component{
 								<FontAwesomeIcon icon={faFeather} size="sm"/> send message
 							</p>
 						</div>
-					]
+					];
 		return(
 			<div className="row profilePage">
 				<div className="grey col-lg-6" style={{background:"#ffff", borderRadius:"5px"}}>
