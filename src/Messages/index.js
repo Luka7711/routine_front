@@ -17,9 +17,11 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 		try{		
 			let response = await fetch(process.env.REACT_APP_BACKEND_URL + 
 				"/message/my-conversation/" + conversationId, {
+					
 					method:"GET",
 					credentials:'include'
 				});
+
 			let parsedResponse = await response.json();
 			//all message being pulled from contacts chat
 			setMessages(parsedResponse.messages);
@@ -27,61 +29,63 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 			console.log(err);
 		}
 	}
-	//pull all messages between contacts when Messages 
-	//component is rendered
+	
+	// if messages has been sent update the messages
+
+	// pull up all messages when component is rendered
 	useEffect(() => {
 		getData();
-	});
-	//close MessageContainer 
-	let closeWindow = () => {
-		closeMessage();
-	} 
-	//need to add message to DB
-	//update Message component
+	}, []);
+
+	let a = 2;
+
+	socket.once("messages", (msg) => {
+		getData()
+	})
+	// senging message to server
 	let handleSubmit = async(e) => {
-	e.preventDefault();
+		
+		e.preventDefault();
+		
 		try{
-		if(text.length !== 0 ){
-			console.log("text length is not 0");
-			
-			socket.emit("messages", text);
-			const response = await fetch(
-				process.env.REACT_APP_BACKEND_URL + 
-				"/message/texting/" + currentUser + 
-				"/" + conversationId, {
+			if(text.length !== 0 ){
+				
+				socket.emit("messages", text);
+				
+				const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/message/texting/" + currentUser + "/" + conversationId, {
+					
 					method:"POST",
 					credentials:"include",
 					body:JSON.stringify({text:text}),
+					
 					headers:{
 						"Content-type":"application/json"
 					}
 				});
 				//sending typed text to server through socket;
-			setText("")
-		}			
-		}catch(err){
+				await setText("");
+			}			
+		}
+		catch(err){
 			console.log(err);
 		}
 	}
+
+
 	//update text value when user is typing
 	let handleChange = (e) => {
 		setText(e.target.value);
 	};
+
 	return ( 
 			<>
-				<FontAwesomeIcon icon={faTimes} size="lg" onClick={closeWindow} className="closingIcon"/>
+				<FontAwesomeIcon icon={faTimes} size="lg" onClick={closeMessage} className="closingIcon"/>
+				<p><FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser} <span style={{color:"green", fontStyle:"italic"}}>typing...</span></p>
 				
-				<p>
-					<FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser} <span style={{color:"green", fontStyle:"italic"}}>typing...</span>
-				</p>
-				
-				<div className="message_content rounded">	
-						
-						<MessageContainer messages={messages}/> 
-						
-
+				<div className="message_content rounded">					
+					<MessageContainer messages={messages}/> 
 				</div>	
-				{/*form element to send new message*/}
+
 				<form onSubmit={handleSubmit} className="messageForm">
 					<div className="row">
 						<div className="col-lg-10 col-md-4 col-sm-6 col-xs-6">
@@ -92,6 +96,6 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 						</div>
 					</div>
 				</form>
-			</>
+			</>/*col-lg7*/
 		)
 }

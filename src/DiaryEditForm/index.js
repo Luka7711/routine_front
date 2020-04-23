@@ -1,6 +1,30 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 
+const style = {
+	textarea:{
+		width:"100%",
+		height:"9rem",
+		borderRadius:"2px",
+		border:'none',
+		padding:"5px",
+		fontFamily:'Helvetica'
+	},
+	forms:{
+		width:"100%",
+		borderRadius:"2px",
+		border:'none',
+		height:"3rem",
+		padding:'5px',
+		fontFamily:'Helvetica'
+	},
+	btn:{
+		backgroundColor:"lightgrey",
+		border:'none',
+		borderRadius:'2px'
+	}
+}
+
 class DiaryEditForm extends Component{
 	constructor(){
 		super();
@@ -79,26 +103,39 @@ class DiaryEditForm extends Component{
 
 	render(){
 		if(this.state.redirect === true){
-			return <Redirect to={`/diary-story/${this.props.match.params.number}`}/>
+			return <Redirect to="/posts"/>
 		};
 		let editForm;
 		if(this.state.showForm){
 			return (
-				editForm = <form onSubmit={this.handleSubmit}>
-					<label>Date:</label>
-					<input type="date" name="date" value={this.state.date} onChange={this.handleChange}/>
-					<label>Title:</label>
-					<input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
-					<label>About:</label>
-					<textarea type="text" name="about" value={this.state.about} onChange={this.handleChange}/>
-					<input type="submit" value="update"/>
-				</form>
+				editForm = 
+							<div className="col-lg-6 container">
+								<form className="form" onSubmit={this.handleSubmit}>
+									<div className="form-group">
+										<div>
+											<label>Date:</label>
+											<input style={style.forms} type="date" name="date" value={this.state.date} onChange={this.handleChange}/>
+										</div>	
+										
+										<div>
+											<label>Title:</label>
+											<input style={style.forms} type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
+										</div>
+										
+										<div>
+											<label>About:</label>
+											<textarea style={style.textarea} type="text" name="about" value={this.state.about} onChange={this.handleChange}/>
+										</div>
+										<input style={style.btn} type="submit" value="update"/>
+									</div>
+								</form>
+							</div>
 			)
 		}
 		return(
-			<div>
-				{this.state.showForm ? editForm : null}
-			</div>	
+			<div className="row">
+					{this.state.showForm ? editForm : null}
+			</div>
 		)
 	}
 }

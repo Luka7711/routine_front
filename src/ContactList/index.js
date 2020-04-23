@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
+
 
 const style={
 	img: {
@@ -6,7 +8,7 @@ const style={
 		backgroungPosition:"center",
 		width:"2.5rem", 
 		height:"2.5rem", 
-		borderTopRighRadius:"50%"
+		borderRadius:"50%"
 	},
 	username: {
 		color:"lightgrey", 
@@ -25,7 +27,8 @@ const style={
 	}
 }
 
-export default({contactList}) => {
+export default({handler, contactList}) => {
+
 	let str;
 	let contacts = contactList.map((contact,i) => {
 		str = contact.messages[0].text
@@ -33,13 +36,13 @@ export default({contactList}) => {
 			str = str.substr(0, str.length-5);
 			str=str+"..."
 		}
-		return <div className="user_avatar_container list_hover" style={style.avatarContainer}>
+		return <Link style={{textDecoration:'none'}} to={`/message-container/${contact.messages[0].conversationId}`}><div key={contact.messages[0].conversationId} className="user_avatar_container list_hover" style={style.avatarContainer}>
 					<img key={i} alt="not found" src={contact.url} style={style.img}/>
 			   		<span style={style.username}>{contact.username}</span>
 			   		<p style={style.message}>{str}</p>
-			   </div>
+			   		</div>
+			   </Link>
 	})
-
 	return (<>
 				{contacts}
 		   </>)

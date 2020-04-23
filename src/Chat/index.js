@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Story from '../Story';
 import ContactList from '../ContactList';
+import Messenger from '../Messenger';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'; 
+
 const style={
 	img: {
 		backgroundSize:"cover", 
@@ -29,13 +32,16 @@ const style={
 	}
 }
 
-class DiaryList  extends Component {
+class Chat  extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			username: props.username,
 			contactList: props.contactList,
-			message:''
+			message:'',
+			currentUser:'mike',
+			foundUser:'luka',
+			conversationId:'5e9e87d1be14ed7d3add50d5'
 		}
 	}
 
@@ -69,6 +75,11 @@ class DiaryList  extends Component {
 		}
 	}
 
+	/*<div className="col-lg-7 stories_container">
+						<h4 className="grey">Diary Stories</h4>
+						{this.state.stories? allStories :'loading'}
+	</div>
+	*/
 	render(){
 		if(this.state.stories){
 			var allStories = this.state.stories.map((item, i) => {
@@ -78,6 +89,7 @@ class DiaryList  extends Component {
 			}) 
 		}
 		return(
+		<Router>
 			<div className="col-lg-12">
 				<div className="row">
 					<div className="col-lg-3" style={style.contactList}>
@@ -87,15 +99,17 @@ class DiaryList  extends Component {
 						</div>
 						{ this.state.contactList ? <ContactList contactList={this.state.contactList}/> : null }
 					</div>
-				
-					<div className="col-lg-7 stories_container">
-						<h4 className="grey">Diary Stories</h4>
-						{this.state.stories? allStories :'loading'}
-					</div>
+					
+					<Switch>
+						<Route path='/message-container/:number' 
+								render={(props) => <Messenger {...props} convoid={props.match.params.number}/>}
+						/>
+					</Switch>
 				</div>
 			</div>	
+		</Router>
 		)
 	}
 }
 
-export default DiaryList
+export default Chat

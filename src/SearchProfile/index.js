@@ -48,17 +48,13 @@ class SearchProfile extends Component{
 		}
 	}
 
-	handleMessage = () => {
-		this.handleShowMessageWindow()
-	}
-
 	closeMessage = () => {
 		this.setState({
 			showMessage:false
 		})
 	}
 
-	handleShowMessageWindow = async() => { 
+	handleMessage = async() => { 
     //1. make post request to server
     //2. pull up all messages from server
     try{

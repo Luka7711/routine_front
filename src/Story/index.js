@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
+const style = {
+	date:{
+		textAlign:"right", 
+		paddingRight:'1rem', 
+		fontStyle:'italic'
+	}
+}
 
 class Story extends Component  {
 	constructor(){
@@ -35,8 +42,8 @@ class Story extends Component  {
 		return(
 			<div className="card rounded">
 				<ul>
+					<li style={style.date}>{this.props.story.date}</li>
 					<Link to={`/diary-story/${this.props.story._id}`} style={{color:"black"}}>
-						<li>{this.props.story.date}</li>
 						<li id="title">{this.props.story.title}</li>
 						<li>{this.props.story.about}</li>
 					</Link>
@@ -44,9 +51,9 @@ class Story extends Component  {
 
 				<ul id="btn_to_right">
 					<Link to={`/diary/edit/${this.props.story._id}`}>
-						<li className="btn btn-warning btn-sm">Edit</li>
+						<li className="btn btn-warning btn-sm">EDIT</li>
 					</Link>
-					<li onClick={this.handleDelete} className="btn btn-secondary btn-sm">Delete</li>
+					<li style={{marginLeft:"3px"}}onClick={this.handleDelete} className="btn btn-secondary btn-sm">DELETE</li>
 				</ul>
 			</div>
 		)

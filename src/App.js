@@ -7,7 +7,7 @@ import Signup from './Signup';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'; 
 import Home from './Home';
 import DiaryForm from './DiaryForm';
-import DiaryList from './DiaryList';
+import Chat from './Chat';
 import StoryOne from './StoryOne';
 import Logout from './Logout';
 import DiaryEditForm from './DiaryEditForm';
@@ -15,11 +15,21 @@ import SearchResult from './SearchResult';
 import SearchProfile from './SearchProfile';
 import MessageContacts from './MessageContacts';
 import Messages from './Messages';
+import Posts from './Posts';
 import openSocket from 'socket.io-client';
 import coverImage from './img/cover.jpg';
 import logo from './img/logo.gif';
 export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
 
+const style = {
+  logo:{
+    width:"3rem", height:"3rem", 
+    backgroundImage:`url(${logo})`, 
+    backgroundSize:'cover', 
+    backgroundPosition:'center', 
+    borderRadius:'5px'
+  }
+}
 
 class App extends Component {
   constructor(){
@@ -34,7 +44,6 @@ class App extends Component {
     }
 
   }
-
 
   handleUsername = (user) => {
     this.setState({
@@ -70,12 +79,6 @@ class App extends Component {
       showMessageWindow:false
     })
   }
-
-  /* 1. send request to get 
-     2. Find conversation id where array has 
-     [id(user1), id(user2)];
-
-  with current user*/
 
   handleChange = async(e) =>{
     e.persist();
@@ -142,22 +145,20 @@ class App extends Component {
   }
 
   render(){
-    /*as soon as user logges to site, pull up
-    [message, contacts] data
-    */
     if(this.state.loggedIn === true) this.getContactList()
+   
     return (
       <Router>
          <div className="App container" onClick={this.handleRemoveForm}>  
+           
            <nav className="navbar navbar-expand-lg navbar-light bg-light ">
             <div className="collapse navbar-collapse" id="navbarNav">
              <ul className="navbar-nav">
-              <div style={{width:"3rem", height:"3rem", backgroundImage:`url(${logo})`, backgroundSize:'cover', backgroundPosition:'center', borderRadius:'5px'}}>
+              <div style={style.logo}>
               </div>
                <Link to="/"><li className="nav-item nav-link">Home</li></Link>
                  {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
                  {this.state.showResult ? <SearchResult foundUser={this.state.foundUser}/> : null}
-                
                 <li className="nav-link" style={{marginLeft:"25rem"}}>
                   <input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/>
                 </li>
@@ -165,21 +166,21 @@ class App extends Component {
              </div>
            </nav>
         
-           <div className="jumbotron" id="jum" style={{backgroundImage:`url(${coverImage})`}}>
-          <div className="container" id="content">
-            <Switch>
-              <Route path="/" exact component={Home}/>
-              <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
-              <Route path='/signup' render={(props) =><Signup {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
-              <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username} handleDiary={this.handleDiary}/>} />
-              <Route path='/profile' render={(props) => <DiaryList {...props} username={this.state.username} contactList={this.state.contactList}/>} />
-              <Route path='/diary-story/:number' component={StoryOne}/>
-              <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
-              <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />
-            </Switch>
-           
-            </div>
+          <div className="jumbotron" id="jum" style={{backgroundImage:`url(${coverImage})`}}>
+             <div className="container" id="content">
+               <Switch>
+                  <Route path="/" exact component={Home}/>
+                  <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
+                  <Route path='/signup' render={(props) =><Signup {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
+                  <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username} handleDiary={this.handleDiary}/>} />
+                  <Route path='/messenger' render={(props) => <Chat {...props} username={this.state.username} contactList={this.state.contactList}/>} />
+                  <Route path='/diary/edit/:number' render={(props) => <DiaryEditForm {...props} name={this.state.username}/> } /> 
+                  <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />
+                  <Route path='/posts' render={(props)=> <Posts {...props} username={this.state.username}/> }/>
+               </Switch>
              </div>
+          </div>
+        
          </div>
       </Router>
     );

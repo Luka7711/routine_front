@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
 
+const style={
+	btn:{
+		marginTop:'10px'
+	}
+}
+
 class DiaryForm extends Component{
 	constructor(props){
 		super(props);
@@ -53,7 +59,7 @@ class DiaryForm extends Component{
 
 	render(){
 		if(this.state.redirect === true){
-			return <Redirect to='/profile'/>
+			return <Redirect to='/posts'/>
 		}
 		return(
 			<div className="col-lg-12">
@@ -61,22 +67,22 @@ class DiaryForm extends Component{
 					<div className="col-lg-6">
 						<form className="form" onSubmit={this.handleSubmit}>
 							<div className="form-group">
-							<div>
-								<label> Date:
+								<div>
+									<label> Date: </label>
 									<input className="form-control" type="date" name="date" onChange={this.handleChange}/>
-								</label>
-							</div>
-								<label>Title:
+								</div>
+								
+								<div>
+									<label>Title:</label>
 									<input className="form-control" type="text" onChange={this.handleChange} name="title" autoComplete="off"/>
-								</label>
+								</div> 
+								
+								<div>	
+									<label>About:</label>
+									<textarea className="form-control" type="text" rows="10" cols="100" onChange={this.handleChange} name="about" placeholder="Type here"></textarea>
+								</div>
+								<button style={style.btn} className="btn btn-secondary">submit</button>
 							</div>
-							
-							<label>
-								About:
-							<textarea className="form-control" type="text" rows="10" cols="100" onChange={this.handleChange} name="about" placeholder="Type here">
-							</textarea>
-							</label>
-							<button className="btn btn-dark">submit</button>
 						</form>
 					</div>
 				</div>
