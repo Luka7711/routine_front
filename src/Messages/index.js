@@ -31,17 +31,15 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 	}
 	
 	// if messages has been sent update the messages
-
 	// pull up all messages when component is rendered
 	useEffect(() => {
 		getData();
 	}, []);
 
-	let a = 2;
-
 	socket.once("messages", (msg) => {
 		getData()
 	})
+
 	// senging message to server
 	let handleSubmit = async(e) => {
 		
@@ -51,7 +49,6 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 			if(text.length !== 0 ){
 				
 				socket.emit("messages", text);
-				
 				const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/message/texting/" + currentUser + "/" + conversationId, {
 					
 					method:"POST",
@@ -64,6 +61,7 @@ export default ({conversationId, currentUser, foundUser, closeMessage}) => {
 				});
 				//sending typed text to server through socket;
 				await setText("");
+				await getData();
 			}			
 		}
 		catch(err){

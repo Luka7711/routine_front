@@ -102,7 +102,7 @@ class Chat  extends Component {
 					
 					<Switch>
 						<Route path='/message-container/:number' 
-								render={(props) => <Messenger {...props} convoid={props.match.params.number}/>}
+								render={(props) => <Messenger {...props} currentUser={this.state.username} convoid={props.match.params.number}/>}
 						/>
 					</Switch>
 				</div>

@@ -159,7 +159,7 @@ class App extends Component {
                <Link to="/"><li className="nav-item nav-link">Home</li></Link>
                  {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
                  {this.state.showResult ? <SearchResult foundUser={this.state.foundUser}/> : null}
-                <li className="nav-link" style={{marginLeft:"25rem"}}>
+                <li className="nav-link" style={{marginLeft:"30rem"}}>
                   <input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/>
                 </li>
              </ul>

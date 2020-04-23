@@ -15,7 +15,7 @@ const style = {
 	}
 }
 
-export default (({convoid}) => {
+export default (({currentUser, convoid}) => {
 	const [messages, setMessages]   = useState([]);
 	const [foundUser, setFoundUser] = useState("luka");
 	const [text, setText] 			= useState('');
@@ -44,12 +44,36 @@ export default (({convoid}) => {
 		return allMessages()
 	});
 
-	const handleSubmit = async() => {
-		console.log("submit the message");
+	const handleSubmit = async(e) => {
+		
+		e.preventDefault();
+		
+		try{
+			if(text.length !== 0 ){
+				
+				socket.emit("messages", text);
+				const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/message/texting/" + currentUser + "/" + convoid, {
+					
+					method:"POST",
+					credentials:"include",
+					body:JSON.stringify({text:text}),
+					
+					headers:{
+						"Content-type":"application/json"
+					}
+				});
+				//sending typed text to server through socket;
+				await setText("");
+				await allMessages();
+			}			
+		}
+		catch(err){
+			console.log(err);
+		}
 	}
 
-	const handleChange = () => {
-		console.log("text is here")
+	const handleChange = (e) => {
+		setText(e.target.value);
 	}
 
 	const closeMessage = () => {
@@ -61,7 +85,6 @@ export default (({convoid}) => {
 	})
 
 	return 	<div className="col-lg-7" style={style.messageContainer}>
-				<FontAwesomeIcon icon={faTimes} size="lg" onClick={closeMessage} className="closingIcon"/>
 				<p><FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser} <span style={{color:"green", fontStyle:"italic"}}>typing...</span></p>
 				<div className="message_content rounded">					
 					<MessageContainer messages={messages}/> 

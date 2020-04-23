@@ -41,8 +41,8 @@ img{
 }
 
 #to-do1:hover{
-	background-color: orange;
-	transition: .6s;
+	background-color: #fcc332;
+	transition: .4s;
 	cursor: pointer;
 }
 
