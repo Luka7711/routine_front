@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Navbar, Button, FormControl, Form, 
+        Nav, NavItem, NavDropdown, DropdownButton, 
+        MenuItem, CollapsibleNav} from 'react-bootstrap';
+
+
 import Authorization from './Authorization';
 import Login from './Login';
 import Signup from './Signup';
@@ -13,13 +18,13 @@ import Logout from './Logout';
 import DiaryEditForm from './DiaryEditForm';
 import SearchResult from './SearchResult';
 import SearchProfile from './SearchProfile';
-import MessageContacts from './MessageContacts';
 import Messages from './Messages';
 import Posts from './Posts';
 import openSocket from 'socket.io-client';
 import coverImage from './img/cover.jpg';
 import logo from './img/logo.gif';
 export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
+
 
 const style = {
   logo:{
@@ -80,6 +85,7 @@ class App extends Component {
     })
   }
 
+  //return searched user 
   handleChange = async(e) =>{
     e.persist();
     try{
@@ -126,6 +132,7 @@ class App extends Component {
     })
   }
 
+  //return list of users that having a conversation with current user 
   getContactList = async() => {
     try{
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/contact-list/${this.state.username}`, {
@@ -138,7 +145,6 @@ class App extends Component {
           contactList:parsedResponse.data
         })
       }
-
     }catch(err) {
       console.log(err);
     }
@@ -150,21 +156,31 @@ class App extends Component {
     return (
       <Router>
          <div className="App container" onClick={this.handleRemoveForm}>  
-           
-           <nav className="navbar navbar-expand-lg navbar-light bg-light ">
-            <div className="collapse navbar-collapse" id="navbarNav">
-             <ul className="navbar-nav">
-              <div style={style.logo}>
-              </div>
-               <Link to="/"><li className="nav-item nav-link">Home</li></Link>
-                 {this.state.loggedIn ? <Logout handleLogout={this.handleLogout}/> : <Authorization/>}
-                 {this.state.showResult ? <SearchResult foundUser={this.state.foundUser}/> : null}
-                <li className="nav-link" style={{marginLeft:"30rem"}}>
-                  <input className="form-control" type="text" placeholder="search" onChange={this.handleChange}/>
-                </li>
-             </ul>
-             </div>
-           </nav>
+            <Navbar id="navigation" bg="light" variant="light" expand="sm">
+              <div style={style.logo}></div>
+              <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+
+              <Navbar.Collapse id="basic-navbar-nav">
+                <ul className="navbar-nav mr-auto">
+                  
+                  <Link className="nav-item" to="/">
+                    <li className="nav-link">Home</li>
+                  </Link>
+                  
+                  { this.state.loggedIn ? 
+                      <Logout handleLogout={this.handleLogout}/> : <Authorization/>
+                  }
+                  
+                  { this.state.showResult ? 
+                      <SearchResult foundUser={this.state.foundUser}/> : null
+                  }
+                </ul>
+                
+                <form className="form-inline my-2 my-lg-0">  
+                    <input className="form-control mr-sm-2" type="text" placeholder="search" onChange={this.handleChange}/>
+                </form>
+              </Navbar.Collapse>
+           </Navbar>
         
           <div className="jumbotron" id="jum" style={{backgroundImage:`url(${coverImage})`}}>
              <div className="container" id="content">

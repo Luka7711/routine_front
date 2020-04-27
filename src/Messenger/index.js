@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import MessageContainer from '../MessageContainer';
+import ChatContainer from '../ChatContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
@@ -15,41 +15,43 @@ const style = {
 	}
 }
 
-export default (({currentUser, convoid}) => {
-	const [messages, setMessages]   = useState([]);
+export default (({contactList, currentUser, convoid}) => {
+	const [messages, setMessages]   = useState(contactList);
 	const [foundUser, setFoundUser] = useState("luka");
 	const [text, setText] 			= useState('');
 
-	const allMessages = async() => {
-		
-		try{
-			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/my-conversation/${convoid}`, {
-				method:"GET",
-				credentials:"include"
-			})
-
-			const parsedResponse = await response.json();
-			setMessages(parsedResponse.messages)
-		}
-		catch(err){
-			console.log(err);
-		}
+	const getMessages = async() => {
+    	try{
+     		const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/contact-list/${currentUser}`, {
+       			method:"GET",
+        		credentials:"include"
+      		})
+    		const parsedResponse = await response.json();
+     		 
+     		if(parsedResponse.status === 200){
+       			 setMessages(parsedResponse.data)
+      		}
+    	} catch(err) {
+      		console.log(err);
+   		}
 	}
 
-	useEffect(() => {
-		allMessages();			
-	}, []);
-
 	socket.on("messages", () => {
-		return allMessages()
+		//if message has been sent or received update messages
+		return getMessages();
 	});
 
 	const handleSubmit = async(e) => {
 		
 		e.preventDefault();
 		
-		try{
-			if(text.length !== 0 ){
+		try {
+			/* if text value is not empty string: 
+				Save message in data base sending POST req
+				Clear input field 
+				Update messages  
+			*/
+			if(text.length !== 0 ) {
 				
 				socket.emit("messages", text);
 				const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/message/texting/" + currentUser + "/" + convoid, {
@@ -64,30 +66,22 @@ export default (({currentUser, convoid}) => {
 				});
 				//sending typed text to server through socket;
 				await setText("");
-				await allMessages();
+				await getMessages();
 			}			
-		}
-		catch(err){
+		} catch(err) {
 			console.log(err);
 		}
 	}
 
 	const handleChange = (e) => {
+		// Set text with value from input field 
 		setText(e.target.value);
 	}
-
-	const closeMessage = () => {
-		console.log("close message")
-	}
-
-	socket.on("messages", () => {
-		console.log("message")
-	})
 
 	return 	<div className="col-lg-7" style={style.messageContainer}>
 				<p><FontAwesomeIcon icon={faUserAstronaut} className="astronautIcon"/> chat with: {foundUser} <span style={{color:"green", fontStyle:"italic"}}>typing...</span></p>
 				<div className="message_content rounded">					
-					<MessageContainer messages={messages}/> 
+					<ChatContainer msgs={messages} convoid={convoid}/> 
 				</div>	
 
 				<form onSubmit={handleSubmit} className="messageForm">

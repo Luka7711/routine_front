@@ -28,16 +28,17 @@ const style={
 }
 
 export default({handler, contactList}) => {
-
+	
 	let str;
+	// return list of contacts with images, names, and text
 	let contacts = contactList.map((contact,i) => {
 		str = contact.messages[0].text
 		if(str.length >= 25){
 			str = str.substr(0, str.length-5);
 			str=str+"..."
 		}
-		return <Link style={{textDecoration:'none'}} to={`/message-container/${contact.messages[0].conversationId}`}><div key={contact.messages[0].conversationId} className="user_avatar_container list_hover" style={style.avatarContainer}>
-					<img key={i} alt="not found" src={contact.url} style={style.img}/>
+		return <Link key={i} style={{textDecoration:'none'}} to={`/message-container/${contact.messages[0].conversationId}`}><div key={contact.messages[0].conversationId} className="user_avatar_container list_hover" style={style.avatarContainer}>
+					<img alt="not found" src={contact.url} style={style.img}/>
 			   		<span style={style.username}>{contact.username}</span>
 			   		<p style={style.message}>{str}</p>
 			   		</div>
@@ -47,3 +48,5 @@ export default({handler, contactList}) => {
 				{contacts}
 		   </>)
 }
+
+

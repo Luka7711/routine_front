@@ -9,10 +9,6 @@ export default ({messages}) => {
 			return	 <li key={i}>{msg.text}</li>
 		})
 
-	useEffect(()=>{
-		socket.on("messages", msg => {
-		})
-	})
 	return (
 			<div>
 				<ul id="text_container">

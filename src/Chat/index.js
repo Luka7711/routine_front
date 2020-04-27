@@ -37,57 +37,11 @@ class Chat  extends Component {
 		super(props);
 		this.state = {
 			username: props.username,
-			contactList: props.contactList,
-			message:'',
-			currentUser:'mike',
-			foundUser:'luka',
-			conversationId:'5e9e87d1be14ed7d3add50d5'
+			contactList: props.contactList
 		}
 	}
-
-	componentDidMount(){
-		this.handleDiaries();
-	}
-
-	handleDiaries = async() => {
-		try{
-			const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/routine/diary/' + this.state.username, {
-				method:'GET',
-				credentials:'include'
-			})
-
-			const parsedResponse = await response.json();
-			if(parsedResponse.status === 200){
-				this.setState({
-					stories: parsedResponse.data.diaryStory,
-					message:parsedResponse.message
-				});
-			}else{
-				console.log('something went wrong')
-				this.setState({
-					message:parsedResponse.message
-				})
-			}
-		}catch(err){
-			this.setState({
-				message:'Whole request are shit'
-			})
-		}
-	}
-
-	/*<div className="col-lg-7 stories_container">
-						<h4 className="grey">Diary Stories</h4>
-						{this.state.stories? allStories :'loading'}
-	</div>
-	*/
+	
 	render(){
-		if(this.state.stories){
-			var allStories = this.state.stories.map((item, i) => {
-				return (
-					<Story key={i} story={item} storyId={this.props.storyId} handleDiaries={this.handleDiaries} username={this.state.username}/>
-				)
-			}) 
-		}
 		return(
 		<Router>
 			<div className="col-lg-12">
@@ -102,7 +56,7 @@ class Chat  extends Component {
 					
 					<Switch>
 						<Route path='/message-container/:number' 
-								render={(props) => <Messenger {...props} currentUser={this.state.username} convoid={props.match.params.number}/>}
+								render={(props) => <Messenger {...props} contactList={this.state.contactList} currentUser={this.state.username} convoid={props.match.params.number}/>}
 						/>
 					</Switch>
 				</div>
