@@ -156,8 +156,9 @@ class App extends Component {
     return (
       <Router>
          <div className="App container" onClick={this.handleRemoveForm}>  
+            
             <Navbar id="navigation" bg="light" variant="light" expand="sm">
-              <div style={style.logo}></div>
+              <div className="mr-5" style={style.logo}></div>
               <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
               <Navbar.Collapse id="basic-navbar-nav">
@@ -181,9 +182,6 @@ class App extends Component {
                 </form>
               </Navbar.Collapse>
            </Navbar>
-        
-          <div className="jumbotron" id="jum" style={{backgroundImage:`url(${coverImage})`}}>
-             <div className="container" id="content">
                <Switch>
                   <Route path="/" exact component={Home}/>
                   <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
@@ -194,10 +192,7 @@ class App extends Component {
                   <Route path='/search-for' render={(props) => <SearchProfile {...props} closeChatWindow={this.closeChatWindow} foundUser={this.state.foundUser} conversationId={this.state.conversationId} currentUser={this.state.username}/> } />
                   <Route path='/posts' render={(props)=> <Posts {...props} username={this.state.username}/> }/>
                </Switch>
-             </div>
-          </div>
-        
-         </div>
+        </div>
       </Router>
     );
   }

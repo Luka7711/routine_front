@@ -1,7 +1,5 @@
-
 body{
-	background-color:blue;
-	font-size: 12px;
+	background-image: url("./img/back.jpeg");
 }
 
 img{
@@ -26,14 +24,6 @@ img{
 	display: inline-block;
 }
 
-.jumbotron{
-	margin-top:1rem;
-	height:40rem;
-}
-
-#jum{
-	background-size: cover;
-}
 
 #content{
 	margin-top:1rem;

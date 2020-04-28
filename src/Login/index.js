@@ -59,9 +59,9 @@ handleSubmit = async(event) => {
 			return <Redirect to="/"/>
 		}
 		return(
-			<div className="col-md-12 d-flex justify-content-center flex-column">
+			<div style={{marginTop:"3rem"}} className="col-lg-12 d-flex justify-content-center flex-column">
 				<div className="row" >
-					<div className="col-lg-6 col-md-8 mx-auto">
+					<div className="col-lg-4 col-md-8 col-sm-7 mx-auto">
 						<div className="card rounded shadow shadow-sm">
 							<div className="card-header text-center">
 								<h3>Sign in</h3>

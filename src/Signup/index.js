@@ -67,9 +67,9 @@ handleSubmit = async(e) => {
 			return <Redirect to="/"/>
 		}
 		return(
-			<div className="col-md-12 d-flex justify-content-center flex-column">
+			<div style={{marginTop:"3rem"}}className="col-md-12 d-flex justify-content-center flex-column">
 				<div className="row" >
-					<div className="col-lg-6 col-md-8 mx-auto">
+					<div className="col-sm-5 col-md-5 col-lg-4 mx-auto">
 						<div className="card rounded shadow shadow-sm">
 							<div className="card-header text-center">
 								<h3>Sign up</h3>
@@ -78,22 +78,19 @@ handleSubmit = async(e) => {
 								<form className="form" onSubmit={this.handleSubmit}>
 									<div className="form-group">
 										<label className="sign">username: {this.state.message}</label>
-										<input autocomplete="off" className="form-control w-100" placeholder="username" name="username" onChange={this.handleChange}/>
-									
+										<input className="form-control" type="text" placeholder="username" name="username" onChange={this.handleChange}/>
 									</div>
 									<div className="form-group">	
 										<label className="sign">password:</label>
-										<input autocomplete="off" className="form-control w-100" placeholder="password" name="password" onChange={this.handleChange}/>
+										<input className="form-control" type="password" placeholder="password" name="password" onChange={this.handleChange}/>
 										
 									</div>
 
 									<div className="form-group">	
-										<label className="sign">profile picture: </label>
-										<div>
+										<label className="sign">Profile picture: </label>
 											<input type="file" name="avatar" onChange={this.handleChange}/>
-										</div>
 									</div>
-									<button className="btn btn-dark">sign up</button>
+									<button className="btn btn-info">sign up</button>
 								</form>
 							</div>
 						</div>

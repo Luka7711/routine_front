@@ -18,17 +18,15 @@ const style={
 		color:"#202428"
 	},
 	contactList: {
-		backgroundColor:"#ffffff",
+		backgroundColor:"#f8f9fa",
 		height:"65vh",
 		padding:0,
-		borderRadius:'5px',
 		overflowY:'scroll'
 	},
 	avatarContainer: {
 		width:"100%", 
 		padding:"10px", 
-		backgroundColor:"#f9c132", 
-		borderRadius:"5px"
+		backgroundColor:"#f9c132"
 	}
 }
 
@@ -44,8 +42,7 @@ class Chat  extends Component {
 	render(){
 		return(
 		<Router>
-			<div className="col-lg-12">
-				<div className="row">
+				<div className="row container-fluid">
 					<div className="col-lg-3" style={style.contactList}>
 						<div className="user_avatar_container" style={style.avatarContainer}>
 							<img key="2" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.state.username}`} style={style.img} />
@@ -60,7 +57,7 @@ class Chat  extends Component {
 						/>
 					</Switch>
 				</div>
-			</div>	
+
 		</Router>
 		)
 	}
