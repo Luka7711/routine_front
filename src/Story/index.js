@@ -40,11 +40,11 @@ class Story extends Component  {
 	}
 	render(){
 		return(
-			<div className="card rounded">
+			<div className="card rounded diary_box">
 				<ul>
 					<li style={style.date}>{this.props.story.date}</li>
 					<Link to={`/diary-story/${this.props.story._id}`} style={{color:"black"}}>
-						<li id="title">{this.props.story.title}</li>
+						<li className="title">{this.props.story.title}</li>
 						<li>{this.props.story.about}</li>
 					</Link>
 				</ul>

@@ -56,10 +56,10 @@ handleSubmit = async(event) => {
 
 	render(){
 		if(this.state.redirect) {
-			return <Redirect to="/"/>
+			return <Redirect to="/home"/>
 		}
 		return(
-			<div style={{marginTop:"3rem"}} className="col-lg-12 d-flex justify-content-center flex-column">
+			<div className="col-lg-12 d-flex justify-content-center flex-column paddingTop">
 				<div className="row" >
 					<div className="col-lg-4 col-md-8 col-sm-7 mx-auto">
 						<div className="card rounded shadow shadow-sm">

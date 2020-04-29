@@ -64,7 +64,7 @@ handleSubmit = async(e) => {
 
 	render(){
 		if(this.state.redirect){
-			return <Redirect to="/"/>
+			return <Redirect to="/home"/>
 		}
 		return(
 			<div style={{marginTop:"3rem"}}className="col-md-12 d-flex justify-content-center flex-column">

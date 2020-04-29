@@ -1,14 +1,79 @@
+*{
+	margin:0;
+	padding:0;
+}
+
 body{
 	background-image: url("./img/back.jpeg");
 }
 
-img{
-	width:auto;
-	height:150px;
-	border-radius: 5%;
+ul li{
+	list-style: none;
 }
 
-.messageContacts{
+#write_image{
+	width:300px;
+	height: auto;
+	border-radius: 5px;
+}
+.row{
+	padding:0;
+	margin-left:0;
+	margin-right:0;
+}
+
+#wrapper{
+	padding:0;
+	background:#add8e6;
+	height:88vh;
+	overflow-y: scroll;; 
+}
+
+.paddingTop{
+	padding-top:3rem;
+}
+
+.message_container li{
+	border:2px solid white;
+	border-radius: 20px;
+	padding:7px;
+	background-color: #fff;
+	width:280px;
+	margin-top:25px;
+}
+
+.message_content{
+	height:50vh;
+	overflow: auto;
+}
+
+.list_hover:hover {
+	background-color: lightgrey;
+}
+
+.diary_box{
+	padding:20px;
+}
+
+#loading_wrapper{
+	margin-right:auto;
+	margin-left: auto;
+}
+
+#loading_icon{
+	width:10%;
+	height: auto;
+}
+
+.title{
+	font-weight: 700;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+/*.messageContacts{
 	margin-top:5rem;
 	width:15rem;
 	height:25rem;
@@ -119,7 +184,4 @@ ul{
 	list-style-type: none;
 }
 
-.list_hover:hover {
-	background-color: lightgrey;
-}
-
+*/

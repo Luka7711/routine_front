@@ -1,39 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
-import { faComments } from '@fortawesome/free-solid-svg-icons';
-const Diary = () =>{
-	return(
-		<>
-			<div className="row">
-				<div className="col-lg-4 card rounded" id="to-do1" style={{height: "4rem"}}>
-					<div className="row" style={{paddingTop: "1rem"}}>
-						<div className="col-lg-8">
-							<h5> <Link to="/write-diary">Write a post</Link></h5>
-						</div>
-						
-						<div className="col-lg-4">
-							<h5><i className="fa fa-edit icon"></i></h5>
-						</div>
-					</div>
-				</div>
-			</div>
+import DiaryForm from '../DiaryForm';
 
-				<div className="row">
-				<div className="col-lg-4 card rounded" id="to-do1" style={{height: "4rem"}}>
-						<div className="row" style={{paddingTop: "1rem"}}>
-						<div className="col-lg-8">
-							<h5> <Link to="/Messenger">Messenger</Link></h5>
-						</div>
-						
-						<div className="col-lg-4">
-							<h5><FontAwesomeIcon icon={faComments} size="lg"/></h5>
-						</div>
-					</div>
-				</div>
+const Diary = (props) => {
+	return(
+		<div className="row paddingTop container justify-content-center">
+			<div className="col-lg-4">
+				<img id="write_image" src="https://images.unsplash.com/photo-1510922903530-28ecf3f00362?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"alt="image"/>
 			</div>
-		</>
+			
+			<div className="col-lg-6">
+				<DiaryForm name={props.name} handleDiary={props.handleDiary}/>
+			</div>
+		</div>
 	)
 }
 

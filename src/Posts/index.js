@@ -3,6 +3,7 @@ import Story from '../Story';
 import ContactList from '../ContactList';
 import Messenger from '../Messenger';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'; 
+import loadIcon from '../img/loading.gif';
 
 class Posts  extends Component {
 	constructor(props){
@@ -51,15 +52,15 @@ class Posts  extends Component {
 				)
 			}) 
 		}
+
+		let loading = <img id="loading_icon" src={loadIcon} alt="loading icon"/>
+					  
 		return(
-			<div className="col-lg-12">
-				<div className="row">
-					<div className="col-lg-7 stories_container">
-						<h4 className="grey">Diary Stories</h4>
-						{this.state.stories? allStories :'loading'}
+				<div className="row container-fluid paddingTop">
+					<div className="col-lg-6 stories_container">
+						{this.state.stories ? allStories : loading}
 					</div>
 				</div>
-			</div>	
 		)
 	}
 }

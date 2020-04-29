@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Diary from '../Diary'
 
-class Home extends Component {
-	constructor(){
-		super();
-		this.state = {
-
-		}
-	}
-
-	render(){
+const Home = (props) =>{
 		return(
-			<div>
-				<Diary/>
-			</div>
+			<>
+				<Diary name={props.name} handleDiary={props.handleDiary}/>
+			</>
 		)
-	}
 }
 
 export default Home

@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Button, FormControl, Form, 
         Nav, NavItem, NavDropdown, DropdownButton, 
         MenuItem, CollapsibleNav} from 'react-bootstrap';
-
-
+import About from './About';
 import Authorization from './Authorization';
 import Login from './Login';
 import Signup from './Signup';
@@ -155,8 +154,8 @@ class App extends Component {
    
     return (
       <Router>
-         <div className="App container" onClick={this.handleRemoveForm}>  
-            
+         <div className="App" onClick={this.handleRemoveForm}>  
+            <div id="wrapper" className="container">
             <Navbar id="navigation" bg="light" variant="light" expand="sm">
               <div className="mr-5" style={style.logo}></div>
               <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -164,7 +163,7 @@ class App extends Component {
               <Navbar.Collapse id="basic-navbar-nav">
                 <ul className="navbar-nav mr-auto">
                   
-                  <Link className="nav-item" to="/">
+                  <Link className="nav-item" to="/home">
                     <li className="nav-link">Home</li>
                   </Link>
                   
@@ -183,7 +182,8 @@ class App extends Component {
               </Navbar.Collapse>
            </Navbar>
                <Switch>
-                  <Route path="/" exact component={Home}/>
+                  <Route path="/" exact component={ About }/>
+                  <Route path="/home" render={(props) => <Home {...props} handleDiary={this.handleDiary} name={this.state.username}/> } />
                   <Route path='/login' render={(props) => <Login {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
                   <Route path='/signup' render={(props) =><Signup {...props} handleUsername={this.handleUsername} handleLoggedIn={this.handleLoggedIn}/>} />
                   <Route path='/write-diary' render={(props) => <DiaryForm {...props} name={this.state.username} handleDiary={this.handleDiary}/>} />
@@ -193,6 +193,7 @@ class App extends Component {
                   <Route path='/posts' render={(props)=> <Posts {...props} username={this.state.username}/> }/>
                </Switch>
         </div>
+      </div>
       </Router>
     );
   }

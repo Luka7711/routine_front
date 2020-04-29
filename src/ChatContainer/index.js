@@ -18,7 +18,7 @@ export default ({msgs, convoid}) => {
 
 	return(
 			<>
-				<ul>
+				<ul className="message_container">
 				 	{ messageContent }
 				</ul>
 			</>

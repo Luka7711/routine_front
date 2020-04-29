@@ -10,8 +10,8 @@ export const socket = openSocket(process.env.REACT_APP_BACKEND_URL);
 
 const style = {
 	messageContainer: {
-		backgroundColor:'white',
-		borderRadius:'10xp'
+		backgroundColor:'#f8f9fa',
+		height:"65vh"
 	}
 }
 

@@ -42,7 +42,7 @@ class Chat  extends Component {
 	render(){
 		return(
 		<Router>
-				<div className="row container-fluid">
+				<div className="row container-fluid justify-content-center paddingTop">
 					<div className="col-lg-3" style={style.contactList}>
 						<div className="user_avatar_container" style={style.avatarContainer}>
 							<img key="2" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.state.username}`} style={style.img} />
