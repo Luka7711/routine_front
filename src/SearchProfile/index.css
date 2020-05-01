@@ -1,0 +1,25 @@
+
+.profile_wrapper{
+	margin-left: 0;
+	margin-right: 0;
+	height: 80vh;
+}
+.profile{
+	background-color: #fff;
+	padding: 10px;
+}
+.user_image{
+	width:inherit;
+}
+
+.img_wrapper{
+	width: inherit;
+}
+
+ul.text_message{
+	background-color: lightgrey;
+}
+
+.message_container{
+	padding:20px;
+}

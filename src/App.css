@@ -7,6 +7,12 @@ body{
 	background-image: url("./img/back.jpeg");
 }
 
+.row{
+	padding:0;
+	margin-left:0;
+	margin-right:0;
+}
+
 ul li{
 	list-style: none;
 }
@@ -16,11 +22,7 @@ ul li{
 	height: auto;
 	border-radius: 5px;
 }
-.row{
-	padding:0;
-	margin-left:0;
-	margin-right:0;
-}
+
 
 #wrapper{
 	padding:0;
@@ -72,6 +74,9 @@ ul li{
 .pointer{
 	cursor: pointer;
 }
+
+
+
 
 /*.messageContacts{
 	margin-top:5rem;

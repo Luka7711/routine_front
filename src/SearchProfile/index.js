@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFeather } from '@fortawesome/free-solid-svg-icons';
@@ -86,20 +87,24 @@ class SearchProfile extends Component{
 	render(){
 		this.handleUserProfile();
 				let profile = 
-					[	<img key="1" alt="not found" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.props.foundUser}`}/>,
-					<div className="profile">
-						<h5 key="2">{this.props.foundUser}</h5>
-						<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="sm"/> add friend</p>
-						<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="sm"/> send message</p>
-					</div>
-				]
+					[<>
+						<div class="img_wrapper"><img key="1" alt="not found" className="user_image" src={`${process.env.REACT_APP_BACKEND_URL}/auth/user-avatar/${this.props.foundUser}`}/></div>
+						<div className="profile">
+							<h5 key="2">{this.props.foundUser}</h5>
+							<p className="pointer" key="3"><FontAwesomeIcon icon={faPlus} size="sm"/> add friend</p>
+							<p className="pointer" key="4" onClick={this.handleMessage}><FontAwesomeIcon icon={faFeather} size="sm"/> send message</p>
+						</div>
+					</>
+					]
 		return(
-			<div className="row profilePage">
-				<div className="grey col-lg-6" style={{background:"#ffff", borderRadius:"5px"}}>
-					{this.state.showProfile? profile : 'loading'}
+			<div className="row profile_wrapper">
+				
+				<div className="col-lg-6 profile">
+					{this.state.showProfile? profile : null}
 				</div>
+				
 				{this.state.showMessage ?
-					<div className="col-lg-5 card rounded message_container">
+					<div className="col-lg-6 card rounded message_container">
 						<Messages closeMessage={this.closeMessage} foundUser={this.props.foundUser} conversationId={this.state.conversationId} currentUser={this.state.currentUser}/>
 					</div>
 					: null
